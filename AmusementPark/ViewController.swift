@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    let classicGuest = Guest(type: .classic)
+    let classicGuest2 = Guest(type: .classic, dateOfBirth: 7890)
 }
 
