@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		656DF20A223391B600FE3848 /* PassGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656DF209223391B600FE3848 /* PassGenerator.swift */; };
+		656DF20C223E2B2700FE3848 /* Passes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656DF20B223E2B2700FE3848 /* Passes.swift */; };
+		656DF20E223E2CB700FE3848 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656DF20D223E2CB700FE3848 /* Test.swift */; };
 		65D226B0222AFEA400D85CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D226AF222AFEA400D85CFA /* AppDelegate.swift */; };
 		65D226B2222AFEA400D85CFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D226B1222AFEA400D85CFA /* ViewController.swift */; };
 		65D226B5222AFEA400D85CFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D226B3222AFEA400D85CFA /* Main.storyboard */; };
@@ -17,7 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		656DF209223391B600FE3848 /* PassGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenerator.swift; sourceTree = "<group>"; };
+		656DF20B223E2B2700FE3848 /* Passes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passes.swift; sourceTree = "<group>"; };
+		656DF20D223E2CB700FE3848 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		65D226AC222AFEA400D85CFA /* AmusementPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D226AF222AFEA400D85CFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D226B1222AFEA400D85CFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,11 +63,12 @@
 				65D226AF222AFEA400D85CFA /* AppDelegate.swift */,
 				65D226B1222AFEA400D85CFA /* ViewController.swift */,
 				65D226C1222BC01000D85CFA /* Entrents.swift */,
-				656DF209223391B600FE3848 /* PassGenerator.swift */,
+				656DF20B223E2B2700FE3848 /* Passes.swift */,
 				65D226B3222AFEA400D85CFA /* Main.storyboard */,
 				65D226B8222AFEA500D85CFA /* LaunchScreen.storyboard */,
 				65D226BB222AFEA500D85CFA /* Info.plist */,
 				65D226B6222AFEA500D85CFA /* Assets.xcassets */,
+				656DF20D223E2CB700FE3848 /* Test.swift */,
 			);
 			path = AmusementPark;
 			sourceTree = "<group>";
@@ -141,8 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				656DF20A223391B600FE3848 /* PassGenerator.swift in Sources */,
 				65D226C2222BC01000D85CFA /* Entrents.swift in Sources */,
+				656DF20C223E2B2700FE3848 /* Passes.swift in Sources */,
+				656DF20E223E2CB700FE3848 /* Test.swift in Sources */,
 				65D226B2222AFEA400D85CFA /* ViewController.swift in Sources */,
 				65D226B0222AFEA400D85CFA /* AppDelegate.swift in Sources */,
 			);
