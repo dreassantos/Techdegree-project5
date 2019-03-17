@@ -64,7 +64,6 @@ class VipGuest: Guest {
     init() {
         super.init(entrantType: .vip)
     }
-    
 }
 
 class ChildGuest: Guest {
