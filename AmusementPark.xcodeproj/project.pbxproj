@@ -64,11 +64,11 @@
 				65D226B1222AFEA400D85CFA /* ViewController.swift */,
 				65D226C1222BC01000D85CFA /* Entrents.swift */,
 				656DF20B223E2B2700FE3848 /* Passes.swift */,
+				656DF20D223E2CB700FE3848 /* Test.swift */,
 				65D226B3222AFEA400D85CFA /* Main.storyboard */,
 				65D226B8222AFEA500D85CFA /* LaunchScreen.storyboard */,
 				65D226BB222AFEA500D85CFA /* Info.plist */,
 				65D226B6222AFEA500D85CFA /* Assets.xcassets */,
-				656DF20D223E2CB700FE3848 /* Test.swift */,
 			);
 			path = AmusementPark;
 			sourceTree = "<group>";

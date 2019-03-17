@@ -133,7 +133,7 @@ class Manager: Employee {
     }
 }
 
-class Contracted: Employee {
+class Contractor: Employee {
     let pass = ContractorPass()
     init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
         super.init(entrantType: .contracted, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
