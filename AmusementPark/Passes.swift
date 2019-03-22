@@ -20,7 +20,7 @@ enum RideAccess {
     case skipTheLines
 }
 
-enum PassType {
+enum PassType: String{
     case classic
     case vip
     case child
@@ -37,11 +37,13 @@ enum PassType {
 class Pass {
     var areaAccess: [AreaAccess]
     var rideAccess: [RideAccess]
-    var discountAccessFor: (food: Int, merchandise: Int)
+    var discountAccessFor: (food: Int,          merchandise: Int)
     var passType: PassType
+    var passName: String
     // customize all the initlizers
     init(passType: PassType, areaAccess: [AreaAccess], rideAccess: [RideAccess], discountAccessFor: (food: Int, merchandise: Int)) {
         self.passType = passType
+        self.passName = passType.rawValue
         self.areaAccess = areaAccess
         self.rideAccess = rideAccess
         self.discountAccessFor = discountAccessFor
@@ -137,6 +139,5 @@ class VendorPass: EmployeePass {
         super.init(passType: .vendor, areaAccess: [.amusementPark,.kitchen], discountAccessFor: (food: 0, merchandise: 0))
     }
 }
-
 
 

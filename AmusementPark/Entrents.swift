@@ -19,12 +19,17 @@ enum EntrantType {
     case vendor
 }
 
+enum entrantErrors {
+    case dateOfBirthMissing
+    case addressIncomplete
+}
+
 class Entrant {
     
     var entrantType: EntrantType
     let firstName: String?
     let lastName: String?
-    var dateOfBirth: Int?
+    var dateOfBirth: Date?
     var streetAddress: String?
     var city: String?
     var state: String?
@@ -33,7 +38,7 @@ class Entrant {
     init(entrantType: EntrantType,
          firstName: String? = nil,
          lastName: String? = nil,
-         dateOfBirth: Int? = nil,
+         dateOfBirth: Date? = nil,
          streetAddress: String? = nil,
          city: String? = nil,
          state: String? = nil,
@@ -45,7 +50,6 @@ class Entrant {
         self.streetAddress = streetAddress
         self.state = state
         self.zipCode = zipCode
-        
     }
 }
 
@@ -53,14 +57,13 @@ class Guest: Entrant {}
 
 // Guests
 class ClassicGuest: Guest {
-    let pass = ClassicPass()
+    let pass = ClassicGuest()
     init() {
         super.init(entrantType: .classic)
     }
 }
-
 class VipGuest: Guest {
-    let pass = VipGuest()
+    let pass = VipPass()
     init() {
         super.init(entrantType: .vip)
     }
@@ -69,36 +72,30 @@ class VipGuest: Guest {
 class ChildGuest: Guest {
     let pass = ChildPass()
     //Change to DATE
-    init(dateOfBirth: Int) {
+    init(dateOfBirth: Date ) {
         super.init(entrantType: .child)
         self.dateOfBirth = dateOfBirth
     }
-    
     func validateDateOfBirth() {
-        //Make an alert
-        if let childsDateOfBirth = dateOfBirth {
-            (childsDateOfBirth < 5) ?
-            (print("child quilifies for a free child pass")) : (print("Does not qualifiy"))
-        } else { //the value of the optional is not set or nil
-            print("Alert - date of birth required to quilify for free child pass")
-        }
+        //TODO: Check date of birth must be under 5
     }
 }
-    
+
 class SeasonPassHolder: Guest {
     let pass = SeasonPass()
     init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int) {
         super.init(entrantType: .seasonPassholder, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
     }
-}
     
+}
+
 class SeniorGuest: Guest {
     let pass = SeniorPass()
-    init(firstName: String, lastName: String, dateOfBirth: Int) {
+    init(firstName: String, lastName: String, dateOfBirth: Date) {
         super.init(entrantType: .Senior, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
     }
 }
-    
+
 //Employees
 class Employee: Entrant {}
 
@@ -143,9 +140,19 @@ class Vendor: Employee {
     let pass = VendorPass()
     let companyName: String
     let dateOfVisit: Int
-    init(firstName:String, lastName:String, dateOfBirth: Int, companyName: String, dateOfVisit: Int){
+    init(firstName:String, lastName:String, dateOfBirth:
+        Date, companyName: String, dateOfVisit: Int){
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
     }
 }
+
+
+extension Entrant {
+    func swipeAtGate(at area: AreaAccess){
+        let kiosk = Kiosk()
+        kiosk.validateAccess(pass: self.pass, at: area)
+    }
+}
+
