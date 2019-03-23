@@ -11,12 +11,11 @@ class Test {
     
     //testing Guests----------------------
     let classicGuest = ClassicGuest()
-    
     let vipGuest = VipGuest()
     
-    let childGuest = ChildGuest(dateOfBirth: 6)
+    //let childGuest = ChildGuest(dateOfBirth: DateFormatter.)
     
-    let seniorGuest = SeniorGuest(firstName: " ", lastName: " ", dateOfBirth: 65)
+   // let seniorGuest = SeniorGuest(firstName: " ", lastName: " ", dateOfBirth: 65)
     
     let seasonPassHolder = SeasonPassHolder(firstName: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
     
@@ -29,7 +28,7 @@ class Test {
     
     let contractor = Contractor(firstname: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
     
-    let vendor = Vendor(firstName: " ", lastName: " ", dateOfBirth: 23, companyName: " ", dateOfVisit: 9000)
+   // let vendor = Vendor(firstName: " ", lastName: " ", dateOfBirth: 23, companyName: " ", dateOfVisit: 9000)
 }
 
 
