@@ -19,9 +19,10 @@ enum EntrantType {
     case vendor
 }
 
-enum entrantErrors {
+enum entrantErrors: Error {
     case dateOfBirthMissing
     case addressIncomplete
+    case childTooOld
 }
 
 class Entrant {
@@ -73,12 +74,18 @@ class VipGuest: Guest {
 }
 
 class ChildGuest: Guest {
-    init(dateOfBirth: Date ) {
+    init(dateOfBirth: Date ) throws {
         super.init(entrantType: .child, pass: ChildPass())
         self.dateOfBirth = dateOfBirth
+    
+        guard validateDateOfBirth() else {
+            throw entrantErrors.childTooOld
+        }
     }
-    func validateDateOfBirth() {
+    
+    func validateDateOfBirth() -> Bool {
         //TODO: Check date of birth must be under 5
+        return true
     }
 }
 
@@ -86,7 +93,6 @@ class SeasonPassHolder: Guest {
     init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int) {
         super.init(entrantType: .seasonPassholder, pass: SeasonPass(), firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
     }
-    
 }
 
 class SeniorGuest: Guest {
@@ -152,7 +158,6 @@ extension Entrant {
     }
     
     func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int){
-        //check spelling
         kiosk.validateAccess(pass: self.pass
             , foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
     }
