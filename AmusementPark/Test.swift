@@ -8,16 +8,10 @@
 import Foundation
 
 class Test {
-    
     //testing Guests----------------------
     let classicGuest = ClassicGuest()
     let vipGuest = VipGuest()
-    
-    //let childGuest = ChildGuest(dateOfBirth: DateFormatter.)
-    
-   // let seniorGuest = SeniorGuest(firstName: " ", lastName: " ", dateOfBirth: 65)
-    
-    let seasonPassHolder = SeasonPassHolder(firstName: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
+    let childGuest = ChildGuest()
     
     //testing Employees--------------------
     let foodServiece = FoodServicesEmployee(firstname: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
@@ -27,10 +21,14 @@ class Test {
     let manager = Manager(firstname: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
     
     let contractor = Contractor(firstname: " ", lastName: " ", streetAddress: " ", city: " ", state: " ", zipCode: 09876)
-    
-   // let vendor = Vendor(firstName: " ", lastName: " ", dateOfBirth: 23, companyName: " ", dateOfVisit: 9000)
-}
 
+
+//testing access
+   // let vipAreaAccess = vipGuest.swipeAtGate(at: .maintenance)
+    let vipGuest2 = VipGuest().swipeAtGate(at: .amusementPark)
+    let vipGuest3 = VipGuest().swipeAtRide(at: .allRides)
+    let vipGuest4 = VipGuest().swipeAtRegister(foodDiscount: 10, merchandiseDiscount: 40)
+}
 
 
 

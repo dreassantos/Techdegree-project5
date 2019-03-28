@@ -21,6 +21,7 @@ enum RideAccess {
 }
 
 enum PassType: String{
+    case basic
     case classic
     case vip
     case child
@@ -47,6 +48,11 @@ class Pass {
         self.areaAccess = areaAccess
         self.rideAccess = rideAccess
         self.discountAccessFor = discountAccessFor
+    }
+}
+class DefaultPass: Pass {
+    init(){
+        super.init(passType: .basic, areaAccess: [.amusementPark], rideAccess: [.allRides], discountAccessFor: (food: 0, merchandise: 0))
     }
 }
 
