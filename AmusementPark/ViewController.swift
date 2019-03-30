@@ -11,8 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let test = Test()
-        print(test)
+        _ = Test.guestTest()
+        _ = Test.employeeTest()
+        _ = Test.swipeTest()
+
     }
 }
 

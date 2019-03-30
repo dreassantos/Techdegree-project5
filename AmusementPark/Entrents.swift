@@ -28,7 +28,7 @@ class Entrant {
     var streetAddress: String?
     var city: String?
     var state: String?
-    var zipCode: Int?
+    var zipCode: String?
     let kiosk = Kiosk()
     var pass: Pass = DefaultPass()
     
@@ -39,7 +39,7 @@ class Entrant {
          streetAddress: String? = nil,
          city: String? = nil,
          state: String? = nil,
-         zipCode: Int? = nil) {
+         zipCode: String? = nil) {
         self.entrantType = entrantType
         self.firstName = firstName
         self.lastName = lastName
@@ -56,6 +56,7 @@ class ClassicGuest: Guest {
     init() {
         super.init(entrantType: .classic)
          pass = ClassicPass()
+        print("Classic Guest Pass Created\n")
     }
 }
 
@@ -63,32 +64,39 @@ class VipGuest: Guest {
     init() {
         super.init(entrantType: .vip)
         pass = VipPass()
+        print("VIP Guest Pass Created\n")
     }
 }
 
 class ChildGuest: Guest {
-    init() throws {
-        super.init(entrantType: .child)
-        let childDateOfBirth = try requiredDateOfBirthCheck()
-        if validateChildPass(dateOfBirth: childDateOfBirth) {
-              pass = ChildPass()
-        } else {
-            try ageExceeded()
-        }
+    init(dateOfBirth: Date?) throws {
+        super.init(entrantType: .child, dateOfBirth: dateOfBirth)
+        let childDateOfBirth = try dateOfBirthCheck()
+        try validateChildPass(dateOfBirth: childDateOfBirth)
+        pass = ChildPass()
+        print("Free Child Guest Pass Created\n")
     }
 }
 
 class SeasonPassHolder: Guest {
-    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?) throws {
+    init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
     super.init(entrantType: .seasonPassholder, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        //must have required information
+        try personalInfoCheck()
+        try addressCheck()
+        //create the pass if no errors
         pass = SeasonPass()
+        print("Season Guest Pass Created\n")
     }
 }
 
 class SeniorGuest: Guest {
-    init(firstName: String, lastName: String, dateOfBirth: Date) {
+    init(firstName: String, lastName: String, dateOfBirth: Date) throws {
         super.init(entrantType: .Senior, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
+        try personalInfoCheck()
+        try dateOfBirthCheck()
         pass =  SeniorPass()
+        print("Senior Guest Pass Created\n")
     }
 }
 
@@ -98,80 +106,70 @@ class Employee: Entrant {}
 class HourlyEmployee: Employee {}
 
 class FoodServicesEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
+    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
         super.init(entrantType: .foodService, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        try personalInfoCheck()
+        try addressCheck()
         pass = FoodServicesPass()
+        print("Food Services Employee Pass Created\n")
     }
 }
 
 class RideServicesEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
+    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
         super.init(entrantType: .rideService, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        try personalInfoCheck()
+        try addressCheck()
         pass = RideServicesPass()
+        print("Ride Services Employee Pass Created\n")
     }
 }
 
 class MaintenanceEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
+    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
         super.init(entrantType: .maintenance, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        try personalInfoCheck()
+        try addressCheck()
         pass = MaintenancePass()
+        print("Maintenance Employee Pass Created\n")
     }
 }
 
 class Manager: Employee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
+    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
         super.init(entrantType: .manager, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        try personalInfoCheck()
+        try addressCheck()
         pass = ManagerPass()
+        print("Manager Pass Created\n")
     }
 }
 
 class Contractor: Employee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int){
+    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
         super.init(entrantType: .contracted, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
-    pass = ContractorPass()
+        try personalInfoCheck()
+        try addressCheck()
+        pass = ContractorPass()
+        print("Contractor Pass Created\n")
     }
 
 }
 
 class Vendor: Employee {
     let companyName: String
-    let dateOfVisit: Int
+    let dateOfVisit: Date
     init(firstName:String, lastName:String, dateOfBirth:
-        Date, companyName: String, dateOfVisit: Int){
+        Date, companyName: String, dateOfVisit: Date) throws {
+
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
+        try personalInfoCheck()
+        try dateOfBirthCheck()
+        
         pass = VendorPass()
-    }
-}
-    
-// Extension Methods -----------------------------------
-extension Entrant {
-    func swipeAtGate(at area: AreaAccess){
-        kiosk.validateAccess(pass: self.pass, at: area)
-    }
-    
-    func swipeAtRide(at ride: RideAccess){
-        kiosk.validateAccess(pass: self.pass, at: ride)
-    }
-    
-    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int){
-        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
+        print("Vendor Pass Created\n")
     }
 }
 
-extension ChildGuest {
-    func validateChildPass(dateOfBirth: Date) -> Bool {
-        var passStatus = false
-        let todaysDate = Date()
-        if let fiveYearsAgo = Calendar.current.date(byAdding: .year, value: -5, to: todaysDate) {
-            let passedTime = Calendar.current.dateComponents([.year], from: dateOfBirth, to: fiveYearsAgo)
-            if let year = passedTime.year {
-                if year > 4 {
-                    passStatus = true
-                }
-            }
-        }
-        return passStatus
-    }
-}
