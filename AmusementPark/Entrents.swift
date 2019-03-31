@@ -45,6 +45,7 @@ class Entrant {
         self.lastName = lastName
         self.dateOfBirth = dateOfBirth
         self.streetAddress = streetAddress
+        self.city = city
         self.state = state
         self.zipCode = zipCode
     }
@@ -91,8 +92,8 @@ class SeasonPassHolder: Guest {
 }
 
 class SeniorGuest: Guest {
-    init(firstName: String, lastName: String, dateOfBirth: Date) throws {
-        super.init(entrantType: .Senior, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
+    init(firstName: String, lastName: String, dateOfBirth: Date?) throws {
+    super.init(entrantType: .Senior, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
         try personalInfoCheck()
         try dateOfBirthCheck()
         pass =  SeniorPass()

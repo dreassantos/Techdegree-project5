@@ -8,8 +8,8 @@
 import Foundation
 
 class Test {
-    
     static func guestTest(){
+        print("---------------Creating Guest Passes---------------")
         // Testing classic guest entry
         _ = ClassicGuest()
         
@@ -25,23 +25,48 @@ class Test {
         }
         
         //free child
-        let birthDate = Date.dateFromString(value: "06/26/2018")
         do {
+            let birthDate = Date.dateFromString(value: "06/26/2018")
             let childGuest1 = try ChildGuest(dateOfBirth: birthDate)
         } catch let error {
             print(error.localizedDescription)
         }
             
         //child is too old
-        let birthDateTooOld = Date.dateFromString(value: "08/23/1990")
         do {
-            let childGuest2 = try ChildGuest(dateOfBirth: birthDateTooOld)
+            let birthDate = Date.dateFromString(value: "08/23/1990")
+            let childGuest2 = try ChildGuest(dateOfBirth: birthDate)
         } catch let error {
             print(error.localizedDescription)
         }
+        // Happy Birthday Guest!
+        do {
+            let birthdayChild = try ChildGuest(dateOfBirth: Date())
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        //Senior Guest - birthday
+        do {
+            let birthDate = Date.dateFromString(value: "03/30/1955")
+            let seniorGuest = try  SeniorGuest(firstName: "Carlos", lastName: "Santiago", dateOfBirth: birthDate)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        do {
+            let birthDate = Date.dateFromString(value: "07/20/1945")
+            let seniorGuest = try SeniorGuest(firstName: "jan", lastName: "jan", dateOfBirth: birthDate)
+        } catch let error {
+        print(error.localizedDescription)
+        }
+        
+        
+        
     }
-    
+
     static func employeeTest() {
+        print("---------------Creating Employee Passes---------------")
         do{//Nothing missing
             let foodServiece = try FoodServicesEmployee(firstname: "frank", lastName: "Smith", streetAddress: "123 Street", city: "SM", state: "CA ", zipCode: "12345")
         } catch let error {
@@ -71,6 +96,7 @@ class Test {
         //using just the kiosk
         let kiosk = Kiosk()
         //sqipe at a area
+        print("---------------Kiosk Test---------------")
         kiosk.validateAccess(pass: ClassicPass(), at: .amusementPark)
         kiosk.validateAccess(pass: ClassicPass(), at: .maintenance)
         kiosk.validateAccess(pass: VipPass(), at: .amusementPark)
@@ -90,6 +116,13 @@ class Test {
         kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 25, merchandiseDiscount: 25)
         
         //using the kiosk from the entrant class (pass is created first)
+        do{
+            let birthDate = Date.dateFromString(value: "03/30/1990")
+            _ = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate).swipeAtGate(at: .amusementPark)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+     
 //        _ = VipGuest().swipeAtGate(at: .amusementPark)
 //        _ = VipGuest().swipeAtRide(at: .allRides)
 //        _ = VipGuest().swipeAtRegister(foodDiscount: 10, merchandiseDiscount: 40)

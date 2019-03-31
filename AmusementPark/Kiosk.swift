@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 class Kiosk {
-    
     func validateAccess(pass: Pass, at area: AreaAccess) {
         if pass.areaAccess.contains(area){
-            print("\(pass.passName) pass - Access Granted: You have access to the \(area) area\n")
+            let alert = UIAlertController(title: "Access Granted", message: "\(pass.passName) pass - You have access to the \(area) area\n", preferredStyle: UIAlertController.Style.alert)
+
         }else {
             print("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
         }
