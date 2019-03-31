@@ -25,13 +25,14 @@ class Kiosk {
     func doubleSwipeCheck(lastSwipe: Date) throws {
         let passedTime = Calendar.current.dateComponents([.second], from: lastSwipe, to: Date())
         if let second = passedTime.second {
-            if second >= 5 {
+            if second < 5 {
                 throw KioskError.doubleSwipe
             }
         }
     }
     
     func validateAccess(pass: Pass, at area: AreaAccess) {
+        //will change to alerts for unit 5 project for now just printing to console
         if pass.areaAccess.contains(area){
             print("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {

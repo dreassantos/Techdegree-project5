@@ -154,7 +154,6 @@ class Contractor: Employee {
         pass = ContractorPass()
         print("Contractor Pass Created\n")
     }
-
 }
 
 class Vendor: Employee {
@@ -162,13 +161,11 @@ class Vendor: Employee {
     let dateOfVisit: Date
     init(firstName:String, lastName:String, dateOfBirth:
         Date, companyName: String, dateOfVisit: Date) throws {
-
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
         try personalInfoCheck()
         try dateOfBirthCheck()
-        
         pass = VendorPass()
         print("Vendor Pass Created\n")
     }

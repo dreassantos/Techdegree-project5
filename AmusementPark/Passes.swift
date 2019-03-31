@@ -38,7 +38,7 @@ enum PassType: String{
 class Pass {
     var areaAccess: [AreaAccess]
     var rideAccess: [RideAccess]
-    var discountAccessFor: (food: Int,          merchandise: Int)
+    var discountAccessFor: (food: Int, merchandise: Int)
     var passType: PassType
     var passName: String
     var lastSwipe: Date = Date()
@@ -94,9 +94,6 @@ class SeniorPass: GuestPass {
         super.init(passType: .Senior, rideAccess: [.allRides, .skipTheLines], discountAccessFor: (food: 10, merchandise: 20))
     }
 }
-
-
-
 
 ///Employee Passes -------------------------------------------------
 class EmployeePass: Pass {

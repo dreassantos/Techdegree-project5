@@ -17,9 +17,10 @@ class Test {
         _ = VipGuest()
         
         //Testing child guest entry
+        
         //no date of birth
         do {
-           let childGuest4 = try ChildGuest(dateOfBirth: nil)
+            _ = try ChildGuest(dateOfBirth: nil)
         } catch let error {
             print(error.localizedDescription)
         }
@@ -27,7 +28,7 @@ class Test {
         //free child
         do {
             let birthDate = Date.dateFromString(value: "06/26/2018")
-            let childGuest1 = try ChildGuest(dateOfBirth: birthDate)
+            _ = try ChildGuest(dateOfBirth: birthDate)
         } catch let error {
             print(error.localizedDescription)
         }
@@ -35,38 +36,38 @@ class Test {
         //child is too old
         do {
             let birthDate = Date.dateFromString(value: "08/23/1990")
-            let childGuest2 = try ChildGuest(dateOfBirth: birthDate)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        // Happy Birthday Guest!
-        do {
-            let birthdayChild = try ChildGuest(dateOfBirth: Date())
+            _ = try ChildGuest(dateOfBirth: birthDate)
         } catch let error {
             print(error.localizedDescription)
         }
         
-        //Senior Guest - birthday
+        // Happy Birthday Guest! (Child)
         do {
-            let birthDate = Date.dateFromString(value: "03/30/1955")
-            let seniorGuest = try  SeniorGuest(firstName: "Carlos", lastName: "Santiago", dateOfBirth: birthDate)
+            _ = try ChildGuest(dateOfBirth: Date())
         } catch let error {
             print(error.localizedDescription)
         }
         
+        //Testing senior
         do {
             let birthDate = Date.dateFromString(value: "07/20/1945")
             let seniorGuest = try SeniorGuest(firstName: "jan", lastName: "jan", dateOfBirth: birthDate)
         } catch let error {
-        print(error.localizedDescription)
+            print(error.localizedDescription)
         }
         
-        
-        
+        //Senior Guest - birthday may need to change date for testing purpose
+        do {
+            let birthDate = Date.dateFromString(value: "03/31/1955")
+            let seniorGuest = try  SeniorGuest(firstName: "Carlos", lastName: "Santiago", dateOfBirth: birthDate)
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     static func employeeTest() {
         print("---------------Creating Employee Passes---------------")
+        
         do{//Nothing missing
             let foodServiece = try FoodServicesEmployee(firstname: "frank", lastName: "Smith", streetAddress: "123 Street", city: "SM", state: "CA ", zipCode: "12345")
         } catch let error {
@@ -120,15 +121,12 @@ class Test {
             let birthDate = Date.dateFromString(value: "03/30/1960")
             let seniorGuest1 = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate)
             try seniorGuest1.swipeAtGate(gate: .amusementPark)
+              //Testing double swiping at gate
             try seniorGuest1.swipeAtRide(ride: .allRides)
             try seniorGuest1.swipeAtRide(ride: .allRides)
         } catch let error {
             print(error.localizedDescription)
         }
-     
-//        _ = VipGuest().swipeAtGate(at: .amusementPark)
-//        _ = VipGuest().swipeAtRide(at: .allRides)
-//        _ = VipGuest().swipeAtRegister(foodDiscount: 10, merchandiseDiscount: 40)
     }
 }
 
