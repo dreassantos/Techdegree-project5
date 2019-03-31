@@ -117,8 +117,11 @@ class Test {
         
         //using the kiosk from the entrant class (pass is created first)
         do{
-            let birthDate = Date.dateFromString(value: "03/30/1990")
-            _ = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate).swipeAtGate(at: .amusementPark)
+            let birthDate = Date.dateFromString(value: "03/30/1960")
+            let seniorGuest1 = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate)
+            try seniorGuest1.swipeAtGate(gate: .amusementPark)
+            try seniorGuest1.swipeAtRide(ride: .allRides)
+            try seniorGuest1.swipeAtRide(ride: .allRides)
         } catch let error {
             print(error.localizedDescription)
         }

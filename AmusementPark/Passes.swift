@@ -41,6 +41,7 @@ class Pass {
     var discountAccessFor: (food: Int,          merchandise: Int)
     var passType: PassType
     var passName: String
+    var lastSwipe: Date = Date()
     // customize all the initlizers
     init(passType: PassType, areaAccess: [AreaAccess], rideAccess: [RideAccess], discountAccessFor: (food: Int, merchandise: Int)) {
         self.passType = passType

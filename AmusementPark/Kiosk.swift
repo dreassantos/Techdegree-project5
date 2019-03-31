@@ -9,11 +9,31 @@
 import Foundation
 import UIKit
 
+enum KioskError{
+    case doubleSwipe
+}
+
+extension KioskError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .doubleSwipe: return "Your pass was already swiped"
+        }
+    }
+}
+
 class Kiosk {
+    func doubleSwipeCheck(lastSwipe: Date) throws {
+        let passedTime = Calendar.current.dateComponents([.second], from: lastSwipe, to: Date())
+        if let second = passedTime.second {
+            if second >= 5 {
+                throw KioskError.doubleSwipe
+            }
+        }
+    }
+    
     func validateAccess(pass: Pass, at area: AreaAccess) {
         if pass.areaAccess.contains(area){
-            let alert = UIAlertController(title: "Access Granted", message: "\(pass.passName) pass - You have access to the \(area) area\n", preferredStyle: UIAlertController.Style.alert)
-
+            print("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {
             print("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
         }
@@ -42,3 +62,4 @@ class Kiosk {
     }
 }
 
+//let alert = UIAlertController(title: "Access Granted", message: "\(pass.passName) pass - You have access to the \(area) area\n", preferredStyle: UIAlertController.Style.alert)

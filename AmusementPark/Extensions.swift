@@ -78,17 +78,19 @@ extension Entrant {
     }
     
     // siwpes in need to use it from the pass.
-    func swipeAtGate(at area: AreaAccess) throws {
-        kiosk.validateAccess(pass: self.pass, at: area)
+    func swipeAtGate(gate: AreaAccess) throws {
+        kiosk.validateAccess(pass: self.pass, at: gate)
         //if there is a date of birth avalible check it for a birth date
         if self.dateOfBirth != nil {
             try dateOfBirthCheck()
         }
     }
     
-    func swipeAtRide(at ride: RideAccess) throws {
-        // delays the check https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift/27517642
-        sleep(5)
+    func swipeAtRide(ride: RideAccess) throws {
+        try kiosk.doubleSwipeCheck(lastSwipe: pass.lastSwipe)
+        //if it passed then change the date
+        pass.lastSwipe = Date()
+        //now validate the access
         kiosk.validateAccess(pass: self.pass, at: ride)
         if self.dateOfBirth != nil {
             try dateOfBirthCheck()
@@ -125,3 +127,8 @@ extension ChildGuest {
 //        }
 //    }
 //}
+
+
+
+//        // delays the check https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift/27517642
+//        sleep(5)
