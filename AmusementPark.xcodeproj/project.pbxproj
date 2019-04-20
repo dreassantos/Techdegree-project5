@@ -66,13 +66,13 @@
 		65D226AE222AFEA400D85CFA /* AmusementPark */ = {
 			isa = PBXGroup;
 			children = (
-				65D226AF222AFEA400D85CFA /* AppDelegate.swift */,
 				65D226B1222AFEA400D85CFA /* ViewController.swift */,
 				6516037A2248969D00D99718 /* EntrantErrors.swift */,
 				65D226C1222BC01000D85CFA /* Entrents.swift */,
 				656DF20F223EC09E00FE3848 /* Kiosk.swift */,
 				656DF20B223E2B2700FE3848 /* Passes.swift */,
 				656DF20D223E2CB700FE3848 /* Test.swift */,
+				65D226AF222AFEA400D85CFA /* AppDelegate.swift */,
 				65D226B3222AFEA400D85CFA /* Main.storyboard */,
 				65D226B8222AFEA500D85CFA /* LaunchScreen.storyboard */,
 				65D226BB222AFEA500D85CFA /* Info.plist */,
