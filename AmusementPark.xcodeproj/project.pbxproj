@@ -17,7 +17,9 @@
 		65D226B7222AFEA500D85CFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D226B6222AFEA500D85CFA /* Assets.xcassets */; };
 		65D226BA222AFEA500D85CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D226B8222AFEA500D85CFA /* LaunchScreen.storyboard */; };
 		65D226C2222BC01000D85CFA /* Entrents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D226C1222BC01000D85CFA /* Entrents.swift */; };
+		BF3C73F222822861009DFB67 /* populateEntrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3C73F122822861009DFB67 /* populateEntrant.swift */; };
 		BF43D2F5224DA035007CFC42 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF43D2F4224DA035007CFC42 /* Extensions.swift */; };
+		BF6B0C3A2287E65900930483 /* PassCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B0C392287E65900930483 /* PassCreatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +35,9 @@
 		65D226B9222AFEA500D85CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D226BB222AFEA500D85CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65D226C1222BC01000D85CFA /* Entrents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrents.swift; sourceTree = "<group>"; };
+		BF3C73F122822861009DFB67 /* populateEntrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = populateEntrant.swift; sourceTree = "<group>"; };
 		BF43D2F4224DA035007CFC42 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BF6B0C392287E65900930483 /* PassCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCreatorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +78,12 @@
 				656DF20D223E2CB700FE3848 /* Test.swift */,
 				65D226AF222AFEA400D85CFA /* AppDelegate.swift */,
 				65D226B3222AFEA400D85CFA /* Main.storyboard */,
+				BF6B0C392287E65900930483 /* PassCreatorViewController.swift */,
 				65D226B8222AFEA500D85CFA /* LaunchScreen.storyboard */,
 				65D226BB222AFEA500D85CFA /* Info.plist */,
 				65D226B6222AFEA500D85CFA /* Assets.xcassets */,
 				BF43D2F4224DA035007CFC42 /* Extensions.swift */,
+				BF3C73F122822861009DFB67 /* populateEntrant.swift */,
 			);
 			path = AmusementPark;
 			sourceTree = "<group>";
@@ -157,10 +163,12 @@
 				656DF20C223E2B2700FE3848 /* Passes.swift in Sources */,
 				656DF20E223E2CB700FE3848 /* Test.swift in Sources */,
 				BF43D2F5224DA035007CFC42 /* Extensions.swift in Sources */,
+				BF6B0C3A2287E65900930483 /* PassCreatorViewController.swift in Sources */,
 				6516037B2248969D00D99718 /* EntrantErrors.swift in Sources */,
 				656DF210223EC09E00FE3848 /* Kiosk.swift in Sources */,
 				65D226B2222AFEA400D85CFA /* ViewController.swift in Sources */,
 				65D226B0222AFEA400D85CFA /* AppDelegate.swift in Sources */,
+				BF3C73F222822861009DFB67 /* populateEntrant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

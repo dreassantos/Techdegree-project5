@@ -31,12 +31,12 @@ class Kiosk {
         }
     }
     
-    func validateAccess(pass: Pass, at area: AreaAccess) {
+    func validateAccess(pass: Pass, at area: AreaAccess) -> String {
         //will change to alerts for unit 5 project for now just printing to console
         if pass.areaAccess.contains(area){
-            print("\(pass.passName) pass - You have access to the \(area) area\n")
+            return ("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {
-            print("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
+            return ("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
         }
     }
     
