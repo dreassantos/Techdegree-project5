@@ -14,12 +14,20 @@ class PassCreatorViewController: UITableViewController {
      var passtype = PassType.basic
     @IBOutlet weak var entrantNameLabel: UILabel!
     @IBOutlet weak var passTypeLabel: UILabel!
+    @IBOutlet weak var discountAccess: UIButton!
     @IBOutlet weak var passSummaryLabel: UILabel!
     @IBOutlet weak var testResultLabel: UILabel!
-    @IBOutlet var accessButtons: [UIButton]!
+
+    @IBOutlet var rideAccessButtons: [UIButton]!
+
+    @IBOutlet weak var rideAccessStack: UIStackView!
+    @IBOutlet weak var areaAccessStack: UIStackView!
+    @IBOutlet var areaAccessButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        areaAccessStack.isHidden = true
+        rideAccessStack.isHidden = true
         getEntrantsInfo()
     }
     
@@ -43,16 +51,29 @@ class PassCreatorViewController: UITableViewController {
     }
 
     @IBAction func areaAccess(_ sender: UIButton) {
+        rideAccessStack.isHidden = true
+        areaAccessStack.isHidden = false
     }
     
     @IBAction func rideAccess(_ sender: UIButton) {
+        areaAccessStack.isHidden = true
+        rideAccessStack.isHidden = false
     }
     
     @IBAction func discountAccess(_ sender: UIButton) {
+        //check if there is a discount using kiosk....
     }
     
+    @IBAction func dismissVC(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
+
 //    @IBAction func createNewPass(_ sender: UIButton) {
 //        dismiss(animated: true, completion: nil)
-//        performSegue(withIdentifier: "", sender: self)
+//        performSegue(withIdentifier: "ViewController", sender: self)
 //    }
-}
+
