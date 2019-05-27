@@ -620,21 +620,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="561.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Access Testing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45t-hd-5tf">
-                                                    <rect key="frame" x="28" y="27" width="712" height="47"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Testing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45t-hd-5tf">
+                                                    <rect key="frame" x="28" y="27" width="712" height="46.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="34"/>
                                                     <color key="textColor" red="0.33725476259999998" green="0.33328139779999999" blue="0.33725535870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Confirm the pass has the expected level of access when swiped at a kiosk" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-Na-awM">
-                                                    <rect key="frame" x="28" y="82" width="712" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm the pass has the expected level of access when swiped at a kiosk" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-Na-awM">
+                                                    <rect key="frame" x="28" y="81.5" width="712" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.33725476259999998" green="0.33328139779999999" blue="0.33725535870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFb-Kw-0oB">
-                                                    <rect key="frame" x="28" y="139" width="200" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFb-Kw-0oB">
+                                                    <rect key="frame" x="28" y="139" width="200" height="45"/>
                                                     <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="QYT-Hj-Rse"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                                     <state key="normal" title="Area Access">
                                                         <color key="titleColor" red="0.3940367997" green="0.57665342090000005" blue="0.5568632483" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -643,9 +646,12 @@
                                                         <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="hgf-tw-Zqp"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEU-5A-bbK">
-                                                    <rect key="frame" x="284" y="139" width="200" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEU-5A-bbK">
+                                                    <rect key="frame" x="284" y="139" width="200" height="45"/>
                                                     <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="O85-qE-jly"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                                     <state key="normal" title="Ride Access">
                                                         <color key="titleColor" red="0.3940367997" green="0.57665342090000005" blue="0.5568632483" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -654,24 +660,19 @@
                                                         <action selector="rideAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="IcD-hS-DuI"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0I-Nu-Ayx">
-                                                    <rect key="frame" x="581" y="139" width="179" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0I-Nu-Ayx">
+                                                    <rect key="frame" x="548" y="139" width="200" height="45"/>
                                                     <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="5zw-Rx-M9T"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                                     <state key="normal" title="Discount Access">
                                                         <color key="titleColor" red="0.3940367997" green="0.57665342090000005" blue="0.5568632483" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Test Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-6h-jzh">
-                                                    <rect key="frame" x="28" y="244" width="707" height="137"/>
-                                                    <color key="backgroundColor" red="0.79229861499999998" green="0.77603805069999998" blue="0.80784714219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
-                                                    <color key="textColor" red="0.41579321029999999" green="0.40757083890000001" blue="0.4274534881" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvb-pQ-llI">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvb-pQ-llI">
                                                     <rect key="frame" x="234" y="410" width="300" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.79229861499999998" green="0.77603805069999998" blue="0.80784714219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="34"/>
                                                     <state key="normal" title="Create New Pass">
@@ -681,63 +682,66 @@
                                                         <action selector="dismissVC:" destination="fXw-ro-F2x" eventType="touchUpInside" id="zaX-BK-oJQ"/>
                                                     </connections>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-fz-CGU" userLabel="AreaStack">
-                                                    <rect key="frame" x="28" y="197" width="708" height="36"/>
+                                                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-fz-CGU" userLabel="AreaStack">
+                                                    <rect key="frame" x="28" y="192" width="720" height="36"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BM9-58-dqq" userLabel="Amusement Park">
-                                                            <rect key="frame" x="0.0" y="0.0" width="123" height="36"/>
-                                                            <color key="backgroundColor" red="0.8354002833366394" green="0.82718253135681152" blue="0.84706133604049683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Amusment Park">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-cM-Ko1">
-                                                            <rect key="frame" x="191" y="0.0" width="60" height="36"/>
-                                                            <color key="backgroundColor" red="0.8354002833366394" green="0.82718253135681152" blue="0.84706133604049683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <rect key="frame" x="144" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Kitchen">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ha-gw-NaS">
-                                                            <rect key="frame" x="319" y="0.0" width="103" height="36"/>
-                                                            <color key="backgroundColor" red="0.8354002833366394" green="0.82718253135681152" blue="0.84706133604049683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <rect key="frame" x="288" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Ride Controll">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-9F-MpO">
-                                                            <rect key="frame" x="490" y="0.0" width="102" height="36"/>
-                                                            <color key="backgroundColor" red="0.8354002833366394" green="0.82718253135681152" blue="0.84706133604049683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <rect key="frame" x="432" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Maintenance">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-HF-68P">
-                                                            <rect key="frame" x="660" y="0.0" width="48" height="36"/>
-                                                            <color key="backgroundColor" red="0.8354002833366394" green="0.82718253135681152" blue="0.84706133604049683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <rect key="frame" x="576" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Office">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" red="0.98049896960000005" green="0.99215060470000005" blue="0.99215716119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="297" translatesAutoresizingMaskIntoConstraints="NO" id="vDm-XJ-zgf" userLabel="RideAccessStack">
-                                                    <rect key="frame" x="161.5" y="197" width="445" height="36"/>
+                                                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vDm-XJ-zgf" userLabel="RideAccessStack">
+                                                    <rect key="frame" x="28" y="192" width="720" height="36"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xc-8H-AOk" userLabel="Amusement Park">
-                                                            <rect key="frame" x="0.0" y="0.0" width="69" height="36"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="All Rides">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-dQ-l1X">
-                                                            <rect key="frame" x="366" y="0.0" width="79" height="36"/>
+                                                            <rect key="frame" x="360" y="0.0" width="360" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                                             <state key="normal" title="Skip Lines">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -745,21 +749,46 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-6h-jzh">
+                                                    <rect key="frame" x="28" y="239" width="720" height="150"/>
+                                                    <color key="backgroundColor" red="0.79229861499999998" green="0.77603805069999998" blue="0.80784714219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" id="PeN-GR-VJl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                                    <color key="textColor" red="0.41579321029999999" green="0.40757083890000001" blue="0.4274534881" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.85504359009999997" green="0.83878397940000005" blue="0.8705922961" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
+                                                <constraint firstItem="z0I-Nu-Ayx" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="top" id="7j6-Md-wQ3"/>
                                                 <constraint firstItem="RFb-Kw-0oB" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="Gf7-Lf-hQ8"/>
-                                                <constraint firstItem="IBG-6h-jzh" firstAttribute="top" secondItem="Xeq-fz-CGU" secondAttribute="bottom" constant="11" id="Kvb-8K-lHd"/>
+                                                <constraint firstItem="vDm-XJ-zgf" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="H8H-gO-JyH"/>
+                                                <constraint firstItem="IBG-6h-jzh" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="Jbk-Lg-8BT"/>
+                                                <constraint firstItem="Wvb-pQ-llI" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="OAr-gh-Y7R"/>
                                                 <constraint firstItem="mPr-Na-awM" firstAttribute="top" secondItem="45t-hd-5tf" secondAttribute="bottom" constant="8" id="OHE-b3-PBy"/>
+                                                <constraint firstItem="IBG-6h-jzh" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="55" id="RsQ-M0-BXT"/>
+                                                <constraint firstItem="45t-hd-5tf" firstAttribute="top" secondItem="SM5-yI-w5k" secondAttribute="top" constant="27" id="SXN-oS-3sp"/>
                                                 <constraint firstItem="mPr-Na-awM" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="Wjq-lx-ziJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mPr-Na-awM" secondAttribute="trailing" constant="8" id="WwZ-sM-oYG"/>
+                                                <constraint firstItem="IBG-6h-jzh" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="Yrh-sS-RPJ"/>
+                                                <constraint firstItem="Wvb-pQ-llI" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="alr-se-nIe"/>
+                                                <constraint firstItem="Wvb-pQ-llI" firstAttribute="top" secondItem="IBG-6h-jzh" secondAttribute="bottom" constant="21" id="b1h-Au-han"/>
+                                                <constraint firstItem="IEU-5A-bbK" firstAttribute="top" secondItem="mPr-Na-awM" secondAttribute="bottom" constant="37" id="bF8-nT-iWH"/>
                                                 <constraint firstItem="Xeq-fz-CGU" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="dfn-nm-nba"/>
-                                                <constraint firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" constant="8" id="een-E2-CQi"/>
+                                                <constraint firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" constant="20" id="een-E2-CQi"/>
                                                 <constraint firstItem="45t-hd-5tf" firstAttribute="centerX" secondItem="SM5-yI-w5k" secondAttribute="centerX" id="gk5-C9-aWU"/>
-                                                <constraint firstItem="vDm-XJ-zgf" firstAttribute="centerX" secondItem="SM5-yI-w5k" secondAttribute="centerX" id="iGX-dR-OAG"/>
+                                                <constraint firstItem="vDm-XJ-zgf" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="8" id="hut-4V-l9r"/>
+                                                <constraint firstItem="Xeq-fz-CGU" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="jHi-Fx-CHB"/>
                                                 <constraint firstItem="Xeq-fz-CGU" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="8" id="jgS-kB-LSD"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="45t-hd-5tf" secondAttribute="trailing" constant="8" id="jkd-jw-eY6"/>
                                                 <constraint firstItem="45t-hd-5tf" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="mKk-4R-yNA"/>
+                                                <constraint firstItem="IEU-5A-bbK" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="trailing" constant="56" id="p37-Gh-voK"/>
+                                                <constraint firstItem="z0I-Nu-Ayx" firstAttribute="leading" secondItem="IEU-5A-bbK" secondAttribute="trailing" constant="64" id="r8U-KY-Ju5"/>
+                                                <constraint firstItem="RFb-Kw-0oB" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="top" id="wf1-Ti-Tql"/>
+                                                <constraint firstItem="vDm-XJ-zgf" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="x9j-U1-963"/>
+                                                <constraint firstItem="IEU-5A-bbK" firstAttribute="centerX" secondItem="SM5-yI-w5k" secondAttribute="centerX" id="xOu-Gq-1wa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration">
