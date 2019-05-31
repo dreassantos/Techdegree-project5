@@ -39,7 +39,6 @@ extension Entrant {
             throw EntrantErrors.missingLastName
         }
     }
-    
     func dateOfBirthCheck() throws -> Date {
         guard let  dateOfBirth = self.dateOfBirth else {
             throw EntrantErrors.dateOfBirthMissing
@@ -48,17 +47,19 @@ extension Entrant {
         return dateOfBirth
     }
     
-    func birthDayCheck(dateOfBirth: Date){
+    func birthDayCheck(dateOfBirth: Date) -> Bool {
         let birthDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dateOfBirth)
         let todaysDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
-        
+        var birthdayStatus = false
         if (birthDateComponents.month == todaysDateComponents.month) && (birthDateComponents.day == todaysDateComponents.day) {
+            birthdayStatus = true
             if let firstName = self.firstName {
-                print("Happy Birthday \(firstName)! Have a wonderful visit today!")
+                print ("Happy Birthday \(firstName)! Have a wonderful visit today!")
             } else {
-                print("Happy Birthday!")
+                print ("Happy Birthday!")
             }
         }
+        return birthdayStatus
     }
     
     func addressCheck() throws {

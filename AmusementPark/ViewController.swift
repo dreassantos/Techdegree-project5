@@ -8,10 +8,14 @@
 
 import UIKit
 class ViewController: UIViewController {
+ 
     //button outlets
     @IBOutlet var entrantOptionButtons: [UIButton]!
-    //Text Field Outlets
-    var passName = ""
+    //Text Field Outlet
+    var status: Bool = false
+    var firstName: String = "Entrant"
+    var lastName: String = ""
+    var passName: String = "Default"
     //Name fields
     @IBOutlet var nameTextField: [UITextField]!
     @IBOutlet var addressTextField: [UITextField]!
@@ -47,17 +51,6 @@ class ViewController: UIViewController {
 
     }
     
-    @IBAction func entrantOptionButtons(_ sender: UIButton) {
-        guestMenueStack.isHidden = true
-        employeeMenueStack.isHidden = true
-        switch sender.tag {
-        case 0: guestMenueStack.isHidden = false
-        case 1: employeeMenueStack.isHidden = false
-        default:
-            print("Invalid Button")
-        }
-    }
-    
     func disableStack(_ stackName: UIStackView){
         stackName.isUserInteractionEnabled = false
         stackName.alpha = 0.3
@@ -68,7 +61,68 @@ class ViewController: UIViewController {
         stackName.alpha = 1
     }
     
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
+        if status {
+            alert.addAction(UIAlertAction(title: "Continue", style: .default, handler:{ action in
+                self.performSegue(withIdentifier: "CreatePassSegue", sender: nil)
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        }
+        self.present(alert, animated: true)
+    }
+    
+    func checkEntrantDOB() {
+        //if the dob string is not empty do this...
+        if let dob = dateOfBirthTextField.text, !dob.isEmpty {
+        let birthDate = Date.dateFromString(value: dob)
+        //Check Entrants DOB to see if its their birthday
+        //entrant is a bool for if it was a birthday or not
+        if let dob = birthDate {
+            status = true //even if its their bday or not the entrant can proceed (except child - check)
+            let entrant = Guest(entrantType: .defaultEntrant).birthDayCheck(dateOfBirth: dob)
+            if entrant { // it is their birthday display a message.... Alert
+                showAlert(title: "Happy Birthday", message:"Happy Birthday \(firstName)! Have a wonderful visit today!")
+                }
+            //Then check if its a child - Does DOB qualify for a free child pass?
+            if passName == "Child"{
+                do {
+                    _ = try ChildGuest(dateOfBirth: birthDate)
+                    status = true
+                } catch let error {
+                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                    print(error.localizedDescription)
+                    status = false
+                }
+            }}} else {
+            //if date of birth was not given.... (And not required)... continue with segue
+            status = true
+        }
+    }
+    func checkReqInfo(){
+        
+    }
+    
+    
+    
+    @IBAction func entrantOptionButtons(_ sender: UIButton) {
+        guard let pass = sender.currentTitle else {return}
+        passName = pass
+        guestMenueStack.isHidden = true
+        employeeMenueStack.isHidden = true
+        switch sender.tag {
+        case 0: guestMenueStack.isHidden = false
+        case 1: employeeMenueStack.isHidden = false
+        default:
+            print("Invalid Button")
+        }
+    }
+    
     @IBAction func adjustInputOptions(_ sender: UIButton) {
+        //save the selected option as the pass's name
+        guard let pass = sender.currentTitle else {return}
+        passName = pass
         //Reset all stacks
         disableStack(nameStack)
         disableStack(companyStack)
@@ -92,27 +146,34 @@ class ViewController: UIViewController {
             print("Could not generate pass")
         }
     }
-    
+
     //This is ran before the segue is actioned
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //check that the correct segue is being preformed.
         guard let destinationVC = segue.destination as? PassCreatorViewController else {return}
-        if let first = nameTextField[0].text, let last = nameTextField[1].text {
-            destinationVC.entrantName = "\(first) \(last)"
-        } else {
-            destinationVC.entrantName = " "
-        }
+        //if so then pass all the needed variables.
+        destinationVC.entrantName = "\(firstName) \(lastName)"
         destinationVC.nameOfPassType = passName
-        destinationVC.birthDate = dateOfBirthTextField.text
     }
-    
     
     @IBAction func generatePass(_ sender: UIButton) {
+        //assign vars now that the user is ready to create a pass
+        if let first = nameTextField[0].text, let last = nameTextField[1].text {
+            firstName = first
+            lastName = last
+        } else { firstName = "New Entrant" }
+        //check the Entrants Date of birth - Alert if its their birthday
+        checkEntrantDOB()
+        //If all requirements are met continue creating the pass.
+        if status {
+            performSegue(withIdentifier: "CreatePassSegue", sender: nil)
+        }
     }
-
+    
     @IBAction func populateData(_ sender: UIButton) {
         if nameStack.isUserInteractionEnabled {
-            nameTextField[0].text = firstName.randomElement()
-            nameTextField[1].text = lastName.randomElement()
+            nameTextField[0].text = "frank"
+            nameTextField[1].text = "asdfasdf"
         }
         if addressStack.isUserInteractionEnabled {
             addressTextField[0].text = streetAddress
@@ -123,10 +184,26 @@ class ViewController: UIViewController {
     }
 }
 
-/*TODO:
- remove text from field when switching
- remove that date of service on switch
- populate data for company name
- populat data fix address
- randomly populate date of birth 
-*/
+
+
+
+
+/*
+ 
+ case "Senior":
+ do {
+ let _ = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: birthDate)
+ } catch let error {
+ print(error.localizedDescription)
+ }
+ case "Vendor":
+ do {
+ 
+ guard let companyName = vendorCompanyTextField[1].text, let serviceDateString = vendorCompanyTextField[2].text else {return}
+ let serviceDate = Date.dateFromString(value: serviceDateString)
+ let _ = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: birthDate, companyName: companyName, dateOfVisit: serviceDate)
+ } catch let error {
+ print(error.localizedDescription)
+ }
+ 
+ */

@@ -8,10 +8,13 @@
 import Foundation
 
 class Test {
+    
+    
+    
     static func guestTest(){
         print("---------------Creating Guest Passes---------------")
         // Testing classic guest entry
-        _ = ClassicGuest()
+       // _ = ClassicGuest()
         
         //Testing vip guest entry
         _ = VipGuest()

@@ -17,6 +17,7 @@ enum EntrantType {
     case Senior
     case contracted
     case vendor
+    case defaultEntrant
 }
 
 class Entrant {
@@ -51,12 +52,14 @@ class Entrant {
     }
 }
 //---- Guests ------------------------------------------
-class Guest: Entrant {}
+class Guest: Entrant {
+}
 
 class ClassicGuest: Guest {
-    init() {
+    init() throws {
         super.init(entrantType: .classic)
          pass = ClassicPass()
+        try dateOfBirthCheck() //  dateOfBirthCheck is also checks for birthday....
         print("Classic Guest Pass Created\n")
     }
 }
@@ -158,9 +161,9 @@ class Contractor: Employee {
 
 class Vendor: Employee {
     let companyName: String
-    let dateOfVisit: Date
+    let dateOfVisit: Date?
     init(firstName:String, lastName:String, dateOfBirth:
-        Date, companyName: String, dateOfVisit: Date) throws {
+        Date?, companyName: String, dateOfVisit: Date?) throws {
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)

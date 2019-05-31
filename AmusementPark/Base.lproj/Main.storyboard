@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="AmusementPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="AmusementPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -446,7 +446,6 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="generatePass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mv3-f6-Npr"/>
-                                                            <segue destination="fXw-ro-F2x" kind="presentation" id="mgO-xp-DM3"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt7-xu-Qz2">
@@ -518,16 +517,17 @@
                         <outletCollection property="vendorCompanyTextField" destination="OZg-7M-FXf" collectionClass="NSMutableArray" id="aF7-nv-2MW"/>
                         <outletCollection property="vendorCompanyTextField" destination="Qdd-f0-RFk" collectionClass="NSMutableArray" id="Jcs-hW-C80"/>
                         <outletCollection property="vendorCompanyTextField" destination="cCd-GS-WSp" collectionClass="NSMutableArray" id="Y91-F1-Tcn"/>
+                        <segue destination="fXw-ro-F2x" kind="presentation" identifier="CreatePassSegue" id="BY5-WD-SN0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.25" y="132.421875"/>
+            <point key="canvasLocation" x="141" y="117"/>
         </scene>
         <!--Pass Creator View Controller-->
         <scene sceneID="abE-Sv-MzF">
             <objects>
-                <tableViewController storyboardIdentifier="CreatePassVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fXw-ro-F2x" customClass="PassCreatorViewController" customModule="AmusementPark" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreatePassVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fXw-ro-F2x" customClass="PassCreatorViewController" customModule="AmusementPark" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="elJ-7Y-1lW">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -692,6 +692,9 @@
                                                             <state key="normal" title="Amusment Park">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="cqH-79-E1b"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-cM-Ko1">
                                                             <rect key="frame" x="144" y="0.0" width="144" height="36"/>
@@ -700,14 +703,20 @@
                                                             <state key="normal" title="Kitchen">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="LtB-lv-8UP"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ha-gw-NaS">
                                                             <rect key="frame" x="288" y="0.0" width="144" height="36"/>
                                                             <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                                            <state key="normal" title="Ride Controll">
+                                                            <state key="normal" title="Ride Control">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="Nud-ZT-ceF"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-9F-MpO">
                                                             <rect key="frame" x="432" y="0.0" width="144" height="36"/>
@@ -716,6 +725,9 @@
                                                             <state key="normal" title="Maintenance">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="wn5-of-sky"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-HF-68P">
                                                             <rect key="frame" x="576" y="0.0" width="144" height="36"/>
@@ -724,6 +736,9 @@
                                                             <state key="normal" title="Office">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="areaAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="eXL-od-Vnf"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.98049896960000005" green="0.99215060470000005" blue="0.99215716119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -749,7 +764,7 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-6h-jzh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test Results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBG-6h-jzh">
                                                     <rect key="frame" x="28" y="239" width="720" height="150"/>
                                                     <color key="backgroundColor" red="0.79229861499999998" green="0.77603805069999998" blue="0.80784714219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>

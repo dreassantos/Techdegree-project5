@@ -1,4 +1,3 @@
-//
 //  EntrantErrors.swift
 //  AmusementPark
 //
@@ -7,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum EntrantErrors: Error {
     //Child Entrant Errors
@@ -51,3 +51,7 @@ extension EntrantErrors: LocalizedError {
         }
     }
 }
+
+//func entrantAlert(title: String, message: String) {
+//    var alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
+//}
