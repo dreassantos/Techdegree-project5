@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var firstName: String = "Entrant"
     var lastName: String = ""
     var passName: String = "Default"
+
     //Name fields
     @IBOutlet var nameTextField: [UITextField]!
     @IBOutlet var addressTextField: [UITextField]!
@@ -72,40 +73,118 @@ class ViewController: UIViewController {
         }
         self.present(alert, animated: true)
     }
-    
-    func checkEntrantDOB() {
-        //if the dob string is not empty do this...
-        if let dob = dateOfBirthTextField.text, !dob.isEmpty {
-        let birthDate = Date.dateFromString(value: dob)
-        //Check Entrants DOB to see if its their birthday
-        //entrant is a bool for if it was a birthday or not
-        if let dob = birthDate {
-            status = true //even if its their bday or not the entrant can proceed (except child - check)
-            let entrant = Guest(entrantType: .defaultEntrant).birthDayCheck(dateOfBirth: dob)
-            if entrant { // it is their birthday display a message.... Alert
-                showAlert(title: "Happy Birthday", message:"Happy Birthday \(firstName)! Have a wonderful visit today!")
-                }
-            //Then check if its a child - Does DOB qualify for a free child pass?
-            if passName == "Child"{
-                do {
-                    _ = try ChildGuest(dateOfBirth: birthDate)
-                    status = true
-                } catch let error {
-                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                    print(error.localizedDescription)
-                    status = false
-                }
-            }}} else {
-            //if date of birth was not given.... (And not required)... continue with segue
-            status = true
+
+    func checkReqInfo() {
+        if let dob = dateOfBirthTextField.text {
+        let dateOfBirth = Date.dateFromString(value: dob)
+        switch passName {
+  
+        case "Classic":
+                        do {
+                            _ = try ClassicGuest()
+                            status = true
+                        } catch let error {
+                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                            print(error.localizedDescription)
+                            status = false
+                        }
+        case "VIP":
+                        do {
+                                _ = try VipGuest()
+                                status = true
+                        } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                        }
+        case "Child":
+                            do {
+                                _ = try ChildGuest(dateOfBirth: dateOfBirth)
+                                status = true
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+            
+        case "food Service":
+                            do {
+                                _ = try FoodServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                status = true
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+        case "Ride Service":
+                            do {
+                                _ = try RideServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                status = true
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+        case "Maintenance":
+                            do {
+                                _ = try MaintenanceEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode )
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+        case "Manager":
+                            do {
+                                _ = try Manager(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+        case "Season Pass":
+                            do {
+                                _ = try SeasonPassHolder(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                status = true
+                            } catch let error {
+                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                                print(error.localizedDescription)
+                                status = false
+                            }
+        case "Senior":
+                        do {
+                            _ = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
+                            status = true
+                        } catch let error {
+                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                            print(error.localizedDescription)
+                            status = false
+                        }
+        case "Contractor":
+                        do {
+                            _ = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            status = true
+                        } catch let error {
+                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                            print(error.localizedDescription)
+                            status = false
+                        }
+        case "Vendor":
+            if let companyName = vendorCompanyTextField[1].text, let dateOfVisitString = vendorCompanyTextField[1].text {
+                        let dateOfVisit = Date.dateFromString(value: dateOfVisitString)
+                        do {
+                            _ = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
+                            status = true
+                        } catch let error {
+                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                            print(error.localizedDescription)
+                            status = false
+                        }
+            }
+            default: Guest(entrantType: .defaultEntrant)
+            }
         }
     }
-    func checkReqInfo(){
-        
-    }
-    
-    
-    
+
     @IBAction func entrantOptionButtons(_ sender: UIButton) {
         guard let pass = sender.currentTitle else {return}
         passName = pass
@@ -163,7 +242,8 @@ class ViewController: UIViewController {
             lastName = last
         } else { firstName = "New Entrant" }
         //check the Entrants Date of birth - Alert if its their birthday
-        checkEntrantDOB()
+        //checkEntrantDOB()
+        checkReqInfo()
         //If all requirements are met continue creating the pass.
         if status {
             performSegue(withIdentifier: "CreatePassSegue", sender: nil)
@@ -187,7 +267,6 @@ class ViewController: UIViewController {
 
 
 
-
 /*
  
  case "Senior":
@@ -206,4 +285,34 @@ class ViewController: UIViewController {
  print(error.localizedDescription)
  }
  
- */
+ 
+
+//This is working code .... comented out to test other code...
+
+//    func checkEntrantDOB() {
+//        //if the dob string is not empty do this...
+//        if let dob = dateOfBirthTextField.text, !dob.isEmpty {
+//        let birthDate = Date.dateFromString(value: dob)
+//        //Check Entrants DOB to see if its their birthday
+//        //entrant is a bool for if it was a birthday or not
+//        if let dob = birthDate {
+//            status = true //even if its their bday or not the entrant can proceed (except child - check)
+//            let entrant = Guest(entrantType: .defaultEntrant).birthDayCheck(dateOfBirth: dob)
+//            if entrant { // it is their birthday display a message.... Alert
+//                showAlert(title: "Happy Birthday", message:"Happy Birthday \(firstName)! Have a wonderful visit today!")
+//                }
+//Then check if its a child - Does DOB qualify for a free child pass?
+//            if passName == "Child"{
+//                do {
+//                    _ = try ChildGuest(dateOfBirth: birthDate)
+//                    status = true
+//                } catch let error {
+//                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+//                    print(error.localizedDescription)
+//                    status = false
+//                }
+//            }}} else {
+//            //if date of birth was not given.... (And not required)... continue with segue
+//            status = true
+//        }
+//    }

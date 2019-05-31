@@ -59,7 +59,7 @@ class ClassicGuest: Guest {
     init() throws {
         super.init(entrantType: .classic)
          pass = ClassicPass()
-        try dateOfBirthCheck() //  dateOfBirthCheck is also checks for birthday....
+        //try dateOfBirthCheck() //  dateOfBirthCheck is also checks for birthday....
         print("Classic Guest Pass Created\n")
     }
 }
