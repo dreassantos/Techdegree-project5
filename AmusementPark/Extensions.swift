@@ -97,12 +97,11 @@ extension Entrant {
             try dateOfBirthCheck()
         }
     
-    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
-        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
-        if self.dateOfBirth != nil {
-            try dateOfBirthCheck()
-        }
-    }
+//    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
+//        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
+//        if self.dateOfBirth != nil {
+//            try dateOfBirthCheck()
+//        }
 }
 }
 

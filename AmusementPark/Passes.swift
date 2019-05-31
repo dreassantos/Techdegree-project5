@@ -14,6 +14,10 @@ enum AreaAccess {
     case maintenance
     case office
 }
+enum DiscountAccess {
+    case food
+    case merch
+}
 
 enum RideAccess {
     case allRides

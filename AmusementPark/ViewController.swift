@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     var lastName: String = ""
     var passName: String = "Default"
     var dateOfBirth: Date? = Date()
+    var entrant = Entrant(entrantType: .defaultEntrant)
     //button outlets
     @IBOutlet var entrantOptionButtons: [UIButton]!
     // //Text Field Outlet
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
         switch passName {
         case "Classic":
                         do {
-                            _ = try ClassicGuest()
+                            entrant = try ClassicGuest()
                             segueStatus = true
                         } catch let error {
                             showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -86,7 +87,7 @@ class ViewController: UIViewController {
                         }
         case "VIP":
                         do {
-                                _ = try VipGuest()
+                                entrant = try VipGuest()
                                 segueStatus = true
                         } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -95,7 +96,7 @@ class ViewController: UIViewController {
                         }
         case "Child":
                             do {
-                                _ = try ChildGuest(dateOfBirth: dateOfBirth)
+                                entrant = try ChildGuest(dateOfBirth: dateOfBirth)
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
             
         case "Food Services":
                             do {
-                                _ = try FoodServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                entrant = try FoodServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -114,7 +115,7 @@ class ViewController: UIViewController {
                             }
         case "Ride Services":
                             do {
-                                _ = try RideServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                entrant = try RideServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -123,7 +124,7 @@ class ViewController: UIViewController {
                             }
         case "Maintenance":
                             do {
-                                _ = try MaintenanceEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode )
+                                entrant = try MaintenanceEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode )
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -132,7 +133,7 @@ class ViewController: UIViewController {
                             }
         case "Manager":
                             do {
-                                _ = try Manager(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                entrant = try Manager(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -141,7 +142,7 @@ class ViewController: UIViewController {
                             }
         case "Season Pass":
                             do {
-                                _ = try SeasonPassHolder(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                                entrant = try SeasonPassHolder(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
                                 segueStatus = true
                             } catch let error {
                                 showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -150,7 +151,7 @@ class ViewController: UIViewController {
                             }
         case "Senior":
                         do {
-                            _ = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
+                            entrant = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
                             segueStatus = true
                         } catch let error {
                             showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -159,7 +160,7 @@ class ViewController: UIViewController {
                         }
         case "Contractor":
                         do {
-                            _ = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            entrant = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
                             segueStatus = true
                         } catch let error {
                             showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -170,7 +171,7 @@ class ViewController: UIViewController {
             if let companyName = vendorCompanyTextField[1].text, let dateOfVisitString = vendorCompanyTextField[1].text {
                         let dateOfVisit = Date.dateFromString(value: dateOfVisitString)
                         do {
-                            _ = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
+                            entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
                             segueStatus = true
                         } catch let error {
                             showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -250,6 +251,7 @@ class ViewController: UIViewController {
         //if so then pass all the needed variables.
         destinationVC.entrantName = "\(firstName) \(lastName)"
         destinationVC.nameOfPassType = passName
+        destinationVC.entrant = entrant
     }
     
     @IBAction func populateData(_ sender: UIButton) {

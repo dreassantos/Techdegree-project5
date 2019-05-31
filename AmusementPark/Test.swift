@@ -112,12 +112,12 @@ class Test {
         kiosk.validateAccess(pass: VipPass(), at: .allRides)
         kiosk.validateAccess(pass: ChildPass(), at: .allRides)
         //Swipe at register
-        kiosk.validateAccess(pass: ClassicPass(), foodDiscount: 30, merchandiseDiscount: 20)
-        kiosk.validateAccess(pass: ClassicPass(), foodDiscount: 0, merchandiseDiscount: 0)
-        kiosk.validateAccess(pass: VipPass(), foodDiscount: 10, merchandiseDiscount: 10)
-        kiosk.validateAccess(pass: VipPass(), foodDiscount: 10, merchandiseDiscount: 20)
-        kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 10, merchandiseDiscount: 10)
-        kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 25, merchandiseDiscount: 25)
+//        kiosk.validateAccess(pass: ClassicPass(), foodDiscount: 30, merchandiseDiscount: 20)
+//        kiosk.validateAccess(pass: ClassicPass(), foodDiscount: 0, merchandiseDiscount: 0)
+//        kiosk.validateAccess(pass: VipPass(), foodDiscount: 10, merchandiseDiscount: 10)
+//        kiosk.validateAccess(pass: VipPass(), foodDiscount: 10, merchandiseDiscount: 20)
+//        kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 10, merchandiseDiscount: 10)
+//        kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 25, merchandiseDiscount: 25)
         
         //using the kiosk from the entrant class (pass is created first)
         do{

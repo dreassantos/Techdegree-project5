@@ -670,6 +670,9 @@
                                                     <state key="normal" title="Discount Access">
                                                         <color key="titleColor" red="0.3940367997" green="0.57665342090000005" blue="0.5568632483" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="discountButton:" destination="fXw-ro-F2x" eventType="touchUpInside" id="8qR-Er-PCx"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvb-pQ-llI">
                                                     <rect key="frame" x="234" y="410" width="300" height="100"/>
@@ -743,6 +746,67 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.98049896960000005" green="0.99215060470000005" blue="0.99215716119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </stackView>
+                                                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wmA-M9-rJf" userLabel="DiscountStack">
+                                                    <rect key="frame" x="28" y="192" width="720" height="36"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8f4-IW-KTr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="0">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discountAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="Ojs-79-Gkq"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7L-PH-xR5">
+                                                            <rect key="frame" x="144" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="10">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discountAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="Fjo-8Q-g0X"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdg-Ba-2HF">
+                                                            <rect key="frame" x="288" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="15">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discountAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="YQv-FZ-gRl"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg0-RI-GFD">
+                                                            <rect key="frame" x="432" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="20">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discountAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="V4a-pP-Atl"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vk4-ja-kre">
+                                                            <rect key="frame" x="576" y="0.0" width="144" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="25">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discountAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="Q0Y-yY-Tf1"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.98049896960000005" green="0.99215060470000005" blue="0.99215716119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </stackView>
                                                 <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vDm-XJ-zgf" userLabel="RideAccessStack">
                                                     <rect key="frame" x="28" y="192" width="720" height="36"/>
                                                     <subviews>
@@ -753,6 +817,9 @@
                                                             <state key="normal" title="All Rides">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="rideAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="MeL-FR-GZM"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-dQ-l1X">
                                                             <rect key="frame" x="360" y="0.0" width="360" height="36"/>
@@ -761,6 +828,36 @@
                                                             <state key="normal" title="Skip Lines">
                                                                 <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="rideAccess:" destination="fXw-ro-F2x" eventType="touchUpInside" id="9qy-OS-ov0"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zC8-RL-FFR" userLabel="DiscountOptionsStack">
+                                                    <rect key="frame" x="28" y="192" width="720" height="36"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eI-Ay-8u2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="Food Discount">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="FoodDiscount:" destination="fXw-ro-F2x" eventType="touchUpInside" id="eBT-lo-poA"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peD-mj-PMI" userLabel="Merchandise Discount">
+                                                            <rect key="frame" x="360" y="0.0" width="360" height="36"/>
+                                                            <color key="backgroundColor" red="0.92951780559999997" green="0.92130058999999997" blue="0.9411790967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                            <state key="normal" title="Merchandise Discount">
+                                                                <color key="titleColor" red="0.40181866290000001" green="0.57660442590000005" blue="0.56078523400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="MerchandiseDiscount:" destination="fXw-ro-F2x" eventType="touchUpInside" id="oU7-tj-dqA"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -777,6 +874,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.85504359009999997" green="0.83878397940000005" blue="0.8705922961" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
+                                                <constraint firstItem="zC8-RL-FFR" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="62n-N3-v7I"/>
                                                 <constraint firstItem="z0I-Nu-Ayx" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="top" id="7j6-Md-wQ3"/>
                                                 <constraint firstItem="RFb-Kw-0oB" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="Gf7-Lf-hQ8"/>
                                                 <constraint firstItem="vDm-XJ-zgf" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="H8H-gO-JyH"/>
@@ -785,14 +883,18 @@
                                                 <constraint firstItem="mPr-Na-awM" firstAttribute="top" secondItem="45t-hd-5tf" secondAttribute="bottom" constant="8" id="OHE-b3-PBy"/>
                                                 <constraint firstItem="IBG-6h-jzh" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="55" id="RsQ-M0-BXT"/>
                                                 <constraint firstItem="45t-hd-5tf" firstAttribute="top" secondItem="SM5-yI-w5k" secondAttribute="top" constant="27" id="SXN-oS-3sp"/>
+                                                <constraint firstItem="wmA-M9-rJf" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="WiH-ag-3n6"/>
                                                 <constraint firstItem="mPr-Na-awM" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="Wjq-lx-ziJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mPr-Na-awM" secondAttribute="trailing" constant="8" id="WwZ-sM-oYG"/>
                                                 <constraint firstItem="IBG-6h-jzh" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="Yrh-sS-RPJ"/>
+                                                <constraint firstItem="wmA-M9-rJf" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="ZCC-mN-oOo"/>
                                                 <constraint firstItem="Wvb-pQ-llI" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="alr-se-nIe"/>
                                                 <constraint firstItem="Wvb-pQ-llI" firstAttribute="top" secondItem="IBG-6h-jzh" secondAttribute="bottom" constant="21" id="b1h-Au-han"/>
                                                 <constraint firstItem="IEU-5A-bbK" firstAttribute="top" secondItem="mPr-Na-awM" secondAttribute="bottom" constant="37" id="bF8-nT-iWH"/>
                                                 <constraint firstItem="Xeq-fz-CGU" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="dfn-nm-nba"/>
                                                 <constraint firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" constant="20" id="een-E2-CQi"/>
+                                                <constraint firstItem="zC8-RL-FFR" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="8" id="fRd-aG-doM"/>
+                                                <constraint firstItem="zC8-RL-FFR" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="fw1-6m-vI1"/>
                                                 <constraint firstItem="45t-hd-5tf" firstAttribute="centerX" secondItem="SM5-yI-w5k" secondAttribute="centerX" id="gk5-C9-aWU"/>
                                                 <constraint firstItem="vDm-XJ-zgf" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="8" id="hut-4V-l9r"/>
                                                 <constraint firstItem="Xeq-fz-CGU" firstAttribute="trailing" secondItem="z0I-Nu-Ayx" secondAttribute="trailing" id="jHi-Fx-CHB"/>
@@ -801,6 +903,7 @@
                                                 <constraint firstItem="45t-hd-5tf" firstAttribute="leading" secondItem="SM5-yI-w5k" secondAttribute="leadingMargin" constant="8" id="mKk-4R-yNA"/>
                                                 <constraint firstItem="IEU-5A-bbK" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="trailing" constant="56" id="p37-Gh-voK"/>
                                                 <constraint firstItem="z0I-Nu-Ayx" firstAttribute="leading" secondItem="IEU-5A-bbK" secondAttribute="trailing" constant="64" id="r8U-KY-Ju5"/>
+                                                <constraint firstItem="wmA-M9-rJf" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="bottom" constant="8" id="vBi-hu-jwi"/>
                                                 <constraint firstItem="RFb-Kw-0oB" firstAttribute="top" secondItem="IEU-5A-bbK" secondAttribute="top" id="wf1-Ti-Tql"/>
                                                 <constraint firstItem="vDm-XJ-zgf" firstAttribute="leading" secondItem="RFb-Kw-0oB" secondAttribute="leading" id="x9j-U1-963"/>
                                                 <constraint firstItem="IEU-5A-bbK" firstAttribute="centerX" secondItem="SM5-yI-w5k" secondAttribute="centerX" id="xOu-Gq-1wa"/>
@@ -820,7 +923,9 @@
                     </tableView>
                     <connections>
                         <outlet property="areaAccessStack" destination="Xeq-fz-CGU" id="7hI-nt-z5m"/>
-                        <outlet property="discountAccess" destination="z0I-Nu-Ayx" id="It4-hf-fAA"/>
+                        <outlet property="discountAccessButton" destination="z0I-Nu-Ayx" id="mjY-bE-bxr"/>
+                        <outlet property="discountAccessStack" destination="wmA-M9-rJf" id="z6X-hn-9ry"/>
+                        <outlet property="discountOptionsStack" destination="zC8-RL-FFR" id="Gjg-Ik-9n9"/>
                         <outlet property="entrantNameLabel" destination="vRi-gn-zcQ" id="dY9-4R-66t"/>
                         <outlet property="passSummaryLabel" destination="WIa-Cn-xLm" id="XcE-Ez-86b"/>
                         <outlet property="passTypeLabel" destination="wXQ-e5-6LS" id="jY2-fd-1oz"/>
@@ -835,6 +940,13 @@
                         <outletCollection property="areaAccessButtons" destination="1ha-gw-NaS" collectionClass="NSMutableArray" id="CNp-Xa-JP4"/>
                         <outletCollection property="areaAccessButtons" destination="bx9-9F-MpO" collectionClass="NSMutableArray" id="NFc-Wh-W0h"/>
                         <outletCollection property="areaAccessButtons" destination="wl7-HF-68P" collectionClass="NSMutableArray" id="BwP-Nm-SPx"/>
+                        <outletCollection property="discountButtons" destination="8f4-IW-KTr" collectionClass="NSMutableArray" id="4eN-5X-QAp"/>
+                        <outletCollection property="discountButtons" destination="9eI-Ay-8u2" collectionClass="NSMutableArray" id="16x-x3-o88"/>
+                        <outletCollection property="discountButtons" destination="peD-mj-PMI" collectionClass="NSMutableArray" id="Xex-53-1fS"/>
+                        <outletCollection property="discountButtons" destination="F7L-PH-xR5" collectionClass="NSMutableArray" id="Ag4-ZS-8k0"/>
+                        <outletCollection property="discountButtons" destination="kdg-Ba-2HF" collectionClass="NSMutableArray" id="5mn-Jg-tna"/>
+                        <outletCollection property="discountButtons" destination="jg0-RI-GFD" collectionClass="NSMutableArray" id="YAU-6Q-cK0"/>
+                        <outletCollection property="discountButtons" destination="vk4-ja-kre" collectionClass="NSMutableArray" id="5b3-HQ-KOs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8b-wc-UlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
