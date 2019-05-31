@@ -14,10 +14,6 @@ enum AreaAccess {
     case maintenance
     case office
 }
-enum DiscountAccess {
-    case food
-    case merch
-}
 
 enum RideAccess {
     case allRides
@@ -148,4 +144,87 @@ class VendorPass: EmployeePass {
     }
 }
 
-
+extension Pass{
+    func passSummary(passName: Pass) -> String {
+    switch passName.passType {
+        case .basic: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} No Food Discount
+        \u{2022} No Merchandise Discount
+        """
+        case .classic: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} No Food Discount
+        \u{2022} No Merchandise Discount
+        """
+       
+    case .vip: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} Skip Ride Lines
+        \u{2022} 10% Food Discount
+        \u{2022} 20% Merchandise Discount
+        """
+    case .child: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} No Food Discount
+        \u{2022} No Merchandise Discount
+        """
+    case .foodService: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} 15% Food Discount
+        \u{2022} 25% Merchandise Discount
+        """
+    case .rideService: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} 15% Food Discount
+        \u{2022} 25% Merchandise Discount
+        """
+    case .maintenance: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} 15% Food Discount
+        \u{2022} 25% Merchandise Discount
+        """
+    case .manager: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} 25% Food Discount
+        \u{2022} 25% Merchandise Discount
+        """
+    case .seasonPassholder: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} Skip Ride Lines
+        \u{2022} 10% Food Discount
+        \u{2022} 20% Merchandise Discount
+        """
+    case .Senior: return
+        """
+        \u{2022} Unlimited Rides
+        \u{2022} Skip Ride Lines
+        \u{2022} 10% Food Discount
+        \u{2022} 10% Merchandise Discount
+        """
+    case .contractor: return
+        """
+        \u{2022} No Ride Access
+        \u{2022} No Skipping lines
+        \u{2022} No Food Discount
+        \u{2022} No Merchandise Discount
+        """
+    case .vendor: return
+        """
+        \u{2022} No Ride Access
+        \u{2022} No Skipping lines
+        \u{2022} No Food Discount
+        \u{2022} No Merchandise Discount
+        """
+        }
+    }
+}

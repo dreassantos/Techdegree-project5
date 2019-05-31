@@ -31,6 +31,10 @@ extension String {
 
 //Entrant Extensions
 extension Entrant {
+    
+
+    
+    
     func personalInfoCheck() throws {
         guard let first = firstName, !first.RemoveBlankSpaces.isEmpty  else {
             throw EntrantErrors.missingFirstName

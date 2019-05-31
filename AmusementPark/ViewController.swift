@@ -187,7 +187,7 @@ class ViewController: UIViewController {
         //reseting the segeStatus
         segueStatus = false
         //assign vars now that the user is ready to create a pass
-        if let first = nameTextField[0].text, let last = nameTextField[1].text {
+        if let first = nameTextField[0].text, let last = nameTextField[1].text, !first.isEmpty, !last.isEmpty {
             firstName = first
             lastName = last
         } else { firstName = "New Entrant" }
@@ -250,7 +250,6 @@ class ViewController: UIViewController {
         guard let destinationVC = segue.destination as? PassCreatorViewController else {return}
         //if so then pass all the needed variables.
         destinationVC.entrantName = "\(firstName) \(lastName)"
-        destinationVC.nameOfPassType = passName
         destinationVC.entrant = entrant
     }
     

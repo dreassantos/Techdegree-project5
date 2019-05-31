@@ -7,9 +7,7 @@ import UIKit
 class PassCreatorViewController: UITableViewController {
     //vars passed from original ViewController
     var entrantName: String = "Default Name"
-    var nameOfPassType: String = "Default pass"
     var birthDate: String?
-    var pass: Pass = DefaultPass()
     var entrant = Entrant(entrantType: .defaultEntrant)
     let kiosk = Kiosk()
     var discountToCheck = "Default"
@@ -33,7 +31,8 @@ class PassCreatorViewController: UITableViewController {
         super.viewDidLoad()
         hideStacks()
         entrantNameLabel.text = entrantName
-        passTypeLabel.text = nameOfPassType
+        passTypeLabel.text = "\(entrant.pass.passType.rawValue) pass"
+        passSummaryLabel.text = entrant.pass.passSummary(passName: entrant.pass)
 //        getEntrantsInfo()
     }
     
