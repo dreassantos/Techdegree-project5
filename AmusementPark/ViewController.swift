@@ -7,9 +7,9 @@ import UIKit
 class ViewController: UIViewController {
     //vars
     var segueStatus: Bool = false
-    var firstName: String = "Entrant"
-    var lastName: String = ""
-    var passName: String = "Default"
+    var firstName: String = String()
+    var lastName: String = String()
+    var passName: String = String()
     var dateOfBirth: Date? = Date()
     var entrant = Entrant(entrantType: .defaultEntrant)
     var streetAddress: String?

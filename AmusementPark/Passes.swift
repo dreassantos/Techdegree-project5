@@ -18,6 +18,7 @@ enum AreaAccess {
 enum RideAccess {
     case allRides
     case skipTheLines
+    case noAccess
 }
 
 enum PassType: String{
@@ -97,32 +98,32 @@ class SeniorPass: GuestPass {
 
 ///Employee Passes -------------------------------------------------
 class EmployeePass: Pass {
-    init(passType: PassType, areaAccess: [AreaAccess], discountAccessFor: (food: Int, merchandise: Int)){
-        super.init(passType: passType, areaAccess: areaAccess, rideAccess: [.allRides], discountAccessFor: discountAccessFor)
+    override init(passType: PassType, areaAccess: [AreaAccess], rideAccess:[RideAccess], discountAccessFor: (food: Int, merchandise: Int)){
+        super.init(passType: passType, areaAccess: areaAccess, rideAccess: rideAccess, discountAccessFor: discountAccessFor)
     }
 }
 
 class HourlyEmployeePass: EmployeePass {
-    init(passType: PassType, areaAccess: [AreaAccess]){
-        super.init(passType: passType, areaAccess: areaAccess, discountAccessFor: (food: 15, merchandise: 25))
+    init(passType: PassType, areaAccess: [AreaAccess], rideAccess: [RideAccess]){
+        super.init(passType: passType, areaAccess: areaAccess, rideAccess: <#[RideAccess]#>, discountAccessFor: (food: 15, merchandise: 25))
     }
 }
 
 class FoodServicesPass: HourlyEmployeePass {
     init(){
-        super.init(passType: .foodService, areaAccess: [.amusementPark,.kitchen])
+        super.init(passType: .foodService, areaAccess: [.amusementPark,.kitchen], rideAccess: [.allRides])
     }
 }
 
 class RideServicesPass: HourlyEmployeePass {
     init(){
-        super.init(passType: .rideService, areaAccess: [.amusementPark,.rideControl])
+        super.init(passType: .rideService, areaAccess: [.amusementPark,.rideControl], rideAccess: [.allRides])
     }
 }
 
 class MaintenancePass: HourlyEmployeePass {
     init(){
-        super.init(passType: .maintenance, areaAccess: [.amusementPark,.kitchen,.rideControl,.maintenance])
+        super.init(passType: .maintenance, areaAccess: [.amusementPark,.kitchen,.rideControl,.maintenance], rideAccess: [.allRides])
     }
 }
 
@@ -134,7 +135,7 @@ class ManagerPass: EmployeePass {
 
 class ContractorPass: EmployeePass {
     init(){
-        super.init(passType: .contractor, areaAccess: [.amusementPark,.kitchen], discountAccessFor: (food: 0, merchandise: 0))
+        super.init(passType: .contractor, areaAccess: [.amusementPark,.kitchen], rideAccess: [.noAccess], discountAccessFor: (food: 0, merchandise: 0))
     }
 }
 
