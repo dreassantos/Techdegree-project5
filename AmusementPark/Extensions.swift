@@ -61,13 +61,23 @@ extension Entrant {
             throw EntrantErrors.missingLastName
         }
     }
+    
     func dateOfBirthCheck() throws -> Date {
-        guard let  dateOfBirth = self.dateOfBirth else {
+        if let  dateOfBirth = self.dateOfBirth {
+            birthDayCheck(dateOfBirth: dateOfBirth)
+            return dateOfBirth
+        }
+        else {
             throw EntrantErrors.dateOfBirthMissing
         }
-        birthDayCheck(dateOfBirth: dateOfBirth)
-        return dateOfBirth
     }
+    
+    func validateDate(_ date: String) throws {
+        if !(date.count == 10) {
+           throw EntrantErrors.invalidDate
+        }
+    }
+    
     func dateOfServiceCheck(_ date: Date?) throws {
         guard let dateOfService = date else {
             throw EntrantErrors.missingServiceDate
@@ -159,6 +169,9 @@ extension ChildGuest {
         if let year = passedTime.year {
             if year >= 4 {
                 throw EntrantErrors.exceededAge
+            }
+            else if year < 0 {
+                throw EntrantErrors.futureKid
             }
         }
     }

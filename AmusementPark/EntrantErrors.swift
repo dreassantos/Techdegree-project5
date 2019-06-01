@@ -11,10 +11,12 @@ import UIKit
 enum EntrantErrors: Error {
     //Child Entrant Errors
     case exceededAge
+    case futureKid
     //Required personl Info
     case dateOfBirthMissing
     case missingFirstName
     case missingLastName
+    case invalidDate
     //Required address
     case missingStreetName
     case missingCityName
@@ -30,6 +32,7 @@ enum EntrantErrors: Error {
     //
     case vendorNameMissing
     case invalidVendorName
+    case HappyBirthday
     
 }
 
@@ -39,6 +42,8 @@ extension EntrantErrors: LocalizedError {
         switch self {
         case .exceededAge: return
             "Attention: Entrants age exceeds the age permitted to qualify for a free child pass.\n"
+        case .futureKid: return
+            "Attention: \"Future\" children do not qualify for a free child pass....."
         case .dateOfBirthMissing: return "Attention: Entrants date of birth is required for entry.\n"
         case .missingFirstName: return
             "Attention: Entrants first Name is required for entry.\n"
@@ -66,6 +71,11 @@ extension EntrantErrors: LocalizedError {
             "Attention: Vendors name is required for entry"
         case .invalidVendorName: return
             "Attention: Could not validate this vendor."
+        case .invalidDate: return
+            "Attention: Date Must Be in the format MM/DD/YYYY"
+        //Not really an error but it is something that must be alerted
+        case .HappyBirthday: return
+            "HappyBirthday!\n Happy Birthday"
         }
     }
 }

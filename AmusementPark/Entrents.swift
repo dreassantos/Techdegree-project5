@@ -171,7 +171,6 @@ class Vendor: Employee {
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
         try personalInfoCheck()
-        print(dateOfBirth)
         try dateOfBirthCheck()
         try dateOfServiceCheck(dateOfVisit)
         pass = VendorPass()

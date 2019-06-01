@@ -105,7 +105,7 @@ class EmployeePass: Pass {
 
 class HourlyEmployeePass: EmployeePass {
     init(passType: PassType, areaAccess: [AreaAccess], rideAccess: [RideAccess]){
-        super.init(passType: passType, areaAccess: areaAccess, rideAccess: <#[RideAccess]#>, discountAccessFor: (food: 15, merchandise: 25))
+        super.init(passType: passType, areaAccess: areaAccess, rideAccess: [.allRides], discountAccessFor: (food: 15, merchandise: 25))
     }
 }
 
@@ -129,7 +129,7 @@ class MaintenancePass: HourlyEmployeePass {
 
 class ManagerPass: EmployeePass {
     init(){
-        super.init(passType: .manager, areaAccess: [.amusementPark,.kitchen,.rideControl,.maintenance,.office], discountAccessFor: (food: 25, merchandise: 25))
+        super.init(passType: .manager, areaAccess: [.amusementPark,.kitchen,.rideControl,.maintenance,.office], rideAccess: [.allRides], discountAccessFor: (food: 25, merchandise: 25))
     }
 }
 
@@ -141,7 +141,7 @@ class ContractorPass: EmployeePass {
 
 class VendorPass: EmployeePass {
     init(){
-        super.init(passType: .vendor, areaAccess: [.amusementPark,.kitchen], discountAccessFor: (food: 0, merchandise: 0))
+        super.init(passType: .vendor, areaAccess: [.amusementPark,.kitchen], rideAccess: [.noAccess], discountAccessFor: (food: 0, merchandise: 0))
     }
 }
 

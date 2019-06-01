@@ -187,6 +187,7 @@ class ViewController: UIViewController {
                 let dateOfVisit = Date.dateFromString(value: serviceDate)
                 do {
                     entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
+                    try entrant.validateDate(serviceDate)
                     try entrant.validateVendor(companyName)
                     segueStatus = true
                 } catch let error {
@@ -208,9 +209,13 @@ class ViewController: UIViewController {
         } else { firstName = "New Entrant" }
         
         if let dob = dateOfBirthTextField.text{
-            print(dob)
+            //Check for valid date
+            do{
+                try entrant.validateDate(dob)
+            } catch let error {
+                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+            }
             dateOfBirth = Date.dateFromString(value: dob)
-            print(dateOfBirth)
         }
         streetAddress = addressTextField[0].text
         city = addressTextField[1].text
