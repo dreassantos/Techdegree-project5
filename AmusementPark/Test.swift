@@ -89,11 +89,11 @@ class Test {
             print(error.localizedDescription)
         }
         
-        do{//missing state
-        let contractor = try Contractor(firstname: "Dave", lastName: "Sprite", streetAddress: "123 Street", city: "SM ", state: " ", zipCode: "12345")
-        } catch let error {
-            print(error.localizedDescription)
-        }
+//        do{//missing state
+//        let contractor = try Contractor(firstname: "Dave", lastName: "Sprite", streetAddress: "123 Street", city: "SM ", state: " ", zipCode: "12345")
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
     }
     
     static func swipeTest() {

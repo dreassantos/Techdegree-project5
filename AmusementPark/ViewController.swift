@@ -12,6 +12,10 @@ class ViewController: UIViewController {
     var passName: String = "Default"
     var dateOfBirth: Date? = Date()
     var entrant = Entrant(entrantType: .defaultEntrant)
+    var streetAddress: String?
+    var city: String?
+    var state: String?
+    var zipCode: String?
     //button outlets
     @IBOutlet var entrantOptionButtons: [UIButton]!
     // //Text Field Outlet
@@ -19,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet var addressTextField: [UITextField]!
     @IBOutlet weak var dateOfBirthTextField: UITextField!
     @IBOutlet var vendorCompanyTextField: [UITextField]!
+    
+    @IBOutlet weak var projectNumberTextField: UITextField!
     //Stacks
     @IBOutlet weak var employeeMenueStack: UIStackView!
     @IBOutlet weak var guestMenueStack: UIStackView!
@@ -74,7 +80,7 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    func checkReqInfo(dateOfBirth: Date?) {
+    func checkReqInfo() {
         switch passName {
         case "Classic":
                         do {
@@ -159,8 +165,13 @@ class ViewController: UIViewController {
                             segueStatus = false
                         }
         case "Contractor":
-                        do {
-                            entrant = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+            do {
+                var pn: String? = projectNumberTextField.text
+                if projectNumberTextField.text == ""{
+                    pn = nil
+                }
+                    entrant = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, projectNumber: pn)
+                            try entrant.validateProjectNumber(pn)
                             segueStatus = true
                         } catch let error {
                             showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
@@ -168,17 +179,21 @@ class ViewController: UIViewController {
                             segueStatus = false
                         }
         case "Vendor":
-            if let companyName = vendorCompanyTextField[1].text, let dateOfVisitString = vendorCompanyTextField[1].text {
-                        let dateOfVisit = Date.dateFromString(value: dateOfVisitString)
-                        do {
-                            entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
-                            segueStatus = true
-                        } catch let error {
-                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                            print(error.localizedDescription)
-                            segueStatus = false
-                        }
-            }
+                var companyName: String? = vendorCompanyTextField[0].text
+                if vendorCompanyTextField[0].text == "" {
+                    companyName = nil
+                }
+                guard let serviceDate = vendorCompanyTextField[1].text else {return}
+                let dateOfVisit = Date.dateFromString(value: serviceDate)
+                do {
+                    entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
+                    try entrant.validateVendor(companyName)
+                    segueStatus = true
+                } catch let error {
+                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+                    print(error.localizedDescription)
+                    segueStatus = false
+                }
             default: Guest(entrantType: .defaultEntrant)
             }
         }
@@ -187,19 +202,43 @@ class ViewController: UIViewController {
         //reseting the segeStatus
         segueStatus = false
         //assign vars now that the user is ready to create a pass
-        if let first = nameTextField[0].text, let last = nameTextField[1].text, !first.isEmpty, !last.isEmpty {
+        if let first = nameTextField[0].text, let last = nameTextField[1].text {
             firstName = first
             lastName = last
         } else { firstName = "New Entrant" }
-        if let dob = dateOfBirthTextField.text {
+        
+        if let dob = dateOfBirthTextField.text{
+            print(dob)
             dateOfBirth = Date.dateFromString(value: dob)
+            print(dateOfBirth)
         }
+        streetAddress = addressTextField[0].text
+        city = addressTextField[1].text
+        state = addressTextField[2].text
+        zipCode = addressTextField[3].text
+        
+        //!first.isEmpty, !last.isEmpty
         //check the Entrants Date of birth - Alert if its their birthday
         //checkEntrantDOB()
-        checkReqInfo(dateOfBirth: dateOfBirth)
+        checkReqInfo()
         //If all requirements are met continue creating the pass.
         if segueStatus {
             performSegue(withIdentifier: "CreatePassSegue", sender: nil)
+        }
+        //clearTextFields()
+    }
+    
+    func clearTextFields(){
+        dateOfBirthTextField.text?.removeAll()
+        projectNumberTextField.text?.removeAll()
+        for textField in nameTextField {
+            textField.text?.removeAll()
+        }
+        for textField in vendorCompanyTextField {
+            textField.text?.removeAll()
+        }
+        for textField in addressTextField {
+            textField.text?.removeAll()
         }
     }
     
@@ -226,15 +265,20 @@ class ViewController: UIViewController {
         disableStack(addressStack)
         disableStack(projectNumberStack)
         disableStack(ssnStack)
+        disableStack(projectNumberStack)
         companyServiceDate.isHidden = true
         //anyone can submit a date of birth
         enableStack(dobStack)
         switch sender.tag {
         case 9:
         enableStack(nameStack)
-        case 2,3,8,10,11,12:
+        case 2,8,10,11,12:
         enableStack(nameStack)
         enableStack(addressStack)
+        case 3:
+        enableStack(nameStack)
+        enableStack(addressStack)
+        enableStack(projectNumberStack)
         case 4:
         enableStack(nameStack)
         enableStack(companyStack)
@@ -253,12 +297,33 @@ class ViewController: UIViewController {
         destinationVC.entrant = entrant
     }
     
+   @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+        clearTextFields()
+    }
+    
     @IBAction func populateData(_ sender: UIButton) {
+        if dobStack.isUserInteractionEnabled{
+        dateOfBirthTextField.text = randomDate()
+        }
+        if projectNumberStack.isUserInteractionEnabled {
+            //random 4 digit number
+            projectNumberTextField.text = randomProjectNumber()
+        }
         if nameStack.isUserInteractionEnabled {
-            nameTextField[0].text = "frank"
-            nameTextField[1].text = "asdfasdf"
+            let name = randomName()
+            nameTextField[0].text = name[0]
+            nameTextField[1].text = name[1]
+        }
+        if companyStack.isUserInteractionEnabled {
+            vendorCompanyTextField[0].text = randomCompanyName()
+            vendorCompanyTextField[1].text = randomDate()
         }
         if addressStack.isUserInteractionEnabled {
+            let address = randomAddress()
+            streetAddress = address[0]
+            city = address[1]
+            state = address[2]
+            zipCode = address[3]
             addressTextField[0].text = streetAddress
             addressTextField[1].text = city
             addressTextField[2].text = state

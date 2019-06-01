@@ -83,7 +83,7 @@ class ChildGuest: Guest {
 }
 
 class SeasonPassHolder: Guest {
-    init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(firstName: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
     super.init(entrantType: .seasonPassholder, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         //must have required information
         try personalInfoCheck()
@@ -110,7 +110,7 @@ class Employee: Entrant {}
 class HourlyEmployee: Employee {}
 
 class FoodServicesEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(firstname: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
         super.init(entrantType: .foodService, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         try personalInfoCheck()
         try addressCheck()
@@ -120,7 +120,7 @@ class FoodServicesEmployee: HourlyEmployee {
 }
 
 class RideServicesEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(firstname: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
         super.init(entrantType: .rideService, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         try personalInfoCheck()
         try addressCheck()
@@ -130,7 +130,7 @@ class RideServicesEmployee: HourlyEmployee {
 }
 
 class MaintenanceEmployee: HourlyEmployee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(firstname: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
         super.init(entrantType: .maintenance, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         try personalInfoCheck()
         try addressCheck()
@@ -140,7 +140,7 @@ class MaintenanceEmployee: HourlyEmployee {
 }
 
 class Manager: Employee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(firstname: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
         super.init(entrantType: .manager, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         try personalInfoCheck()
         try addressCheck()
@@ -150,26 +150,32 @@ class Manager: Employee {
 }
 
 class Contractor: Employee {
-    init(firstname: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    let projectNumber: String?
+    init(firstname: String, lastName: String, streetAddress: String?, city: String?, state: String?, zipCode: String?, projectNumber: String?) throws {
+        self.projectNumber = projectNumber
         super.init(entrantType: .contracted, firstName: firstname, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
         try personalInfoCheck()
         try addressCheck()
+        try validateProjectNumber(projectNumber)
         pass = ContractorPass()
         print("Contractor Pass Created\n")
     }
 }
 
 class Vendor: Employee {
-    let companyName: String
+    let companyName: String?
     let dateOfVisit: Date?
     init(firstName:String, lastName:String, dateOfBirth:
-        Date?, companyName: String, dateOfVisit: Date?) throws {
+        Date?, companyName: String?, dateOfVisit: Date?) throws {
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
         try personalInfoCheck()
+        print(dateOfBirth)
         try dateOfBirthCheck()
+        try dateOfServiceCheck(dateOfVisit)
         pass = VendorPass()
+       
         print("Vendor Pass Created\n")
     }
 }

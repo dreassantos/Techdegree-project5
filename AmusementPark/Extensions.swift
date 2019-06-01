@@ -11,13 +11,13 @@ import Foundation
 
 extension Date {
     static func dateFromString(value: String) -> Date? {
-   
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
     
+        print(value)
         let date = dateFormatter.date(from: value )
+        print(date)
         return date
-        
     }
 }
 
@@ -32,11 +32,29 @@ extension String {
 //Entrant Extensions
 extension Entrant {
     
-
-    
+    func validateProjectNumber(_ projectNumber: String?) throws {
+        //These are the only valid projectNumbers
+        guard let projectNumber  = projectNumber else {
+            //Throw project number is required....
+            throw EntrantErrors.projectNumberMissing
+        }
+        let projectNumbers = [1001,1002,1003,2001,2002]
+        if !(projectNumber.count == 4){
+            throw EntrantErrors.invalidProjectNumberLength
+        }
+        var validStatus = false
+        for number in projectNumbers {
+            if (Int(projectNumber) == number){
+                validStatus = true
+            }
+        }
+        if !(validStatus){
+            throw  EntrantErrors.projectNumberInvalid
+        }
+    }
     
     func personalInfoCheck() throws {
-        guard let first = firstName, !first.RemoveBlankSpaces.isEmpty  else {
+        guard let first = firstName, !first.RemoveBlankSpaces.isEmpty else {
             throw EntrantErrors.missingFirstName
         }
         guard let last = lastName, !last.RemoveBlankSpaces.isEmpty else {
@@ -49,6 +67,11 @@ extension Entrant {
         }
         birthDayCheck(dateOfBirth: dateOfBirth)
         return dateOfBirth
+    }
+    func dateOfServiceCheck(_ date: Date?) throws {
+        guard let dateOfService = date else {
+            throw EntrantErrors.missingServiceDate
+        }
     }
     
     func birthDayCheck(dateOfBirth: Date) -> Bool {
@@ -107,6 +130,26 @@ extension Entrant {
 //            try dateOfBirthCheck()
 //        }
 }
+}
+
+extension Entrant {
+    func validateVendor (_ vendorName: String?) throws {
+        guard let vendorName = vendorName else {
+            throw EntrantErrors.vendorNameMissing
+        }
+        let acceptedVendors = ["acme","nw electrical","fedex","orkin"]
+        let vendorNameLowerCase = vendorName.lowercased()
+        var validStatus = false
+        for vendor in acceptedVendors {
+            if vendor == vendorNameLowerCase {
+                validStatus = true
+            }
+        }
+        if !(validStatus){
+            print(vendorNameLowerCase)
+            throw  EntrantErrors.invalidVendorName
+        }
+    }
 }
 
 extension ChildGuest {

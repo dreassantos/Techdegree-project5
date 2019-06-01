@@ -36,33 +36,7 @@ class PassCreatorViewController: UITableViewController {
 //        getEntrantsInfo()
     }
     
-//    func getEntrantsInfo(){
-        //from previous viewController
-//        entrantNameLabel.text = entrantName
-//        passTypeLabel.text = nameOfPassType
-        //setting the correct pass for testing perposes.
-//        switch nameOfPassType {
-//        case "Classic": pass = ClassicPass()
-//        case "VIP": pass = VipPass()
-//        case "Child": pass = ChildPass()
-//        case "Season Pass": pass = SeasonPass()
-//        case "Senior" : pass = SeniorPass()
-//        case "Food Services" : pass = FoodServicesPass()
-//        case "Ride Service" : pass = RideServicesPass()
-//        case "Maintenance" : pass = MaintenancePass()
-//        case "Manager" : pass = ManagerPass()
-//        case "Contractor": pass = ContractorPass()
-//        case "Vendor": pass = VendorPass()
-//        default: print("could not create pass type")
-//}}
-//    func checkBirthDate(dateString: String){
-//        do {
-//            let birthDate = Date.dateFromString(value: dateString)
-//            _ = try ChildGuest(dateOfBirth: birthDate)
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//    }
+
 
     @IBAction func areaAccess(_ sender: UIButton) {
         hideStacks()
@@ -131,6 +105,38 @@ class PassCreatorViewController: UITableViewController {
     }
     
     @IBAction func dismissVC(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
 }
+
+/*
+ //    func getEntrantsInfo(){
+ //from previous viewController
+ //        entrantNameLabel.text = entrantName
+ //        passTypeLabel.text = nameOfPassType
+ //setting the correct pass for testing perposes.
+ //        switch nameOfPassType {
+ //        case "Classic": pass = ClassicPass()
+ //        case "VIP": pass = VipPass()
+ //        case "Child": pass = ChildPass()
+ //        case "Season Pass": pass = SeasonPass()
+ //        case "Senior" : pass = SeniorPass()
+ //        case "Food Services" : pass = FoodServicesPass()
+ //        case "Ride Service" : pass = RideServicesPass()
+ //        case "Maintenance" : pass = MaintenancePass()
+ //        case "Manager" : pass = ManagerPass()
+ //        case "Contractor": pass = ContractorPass()
+ //        case "Vendor": pass = VendorPass()
+ //        default: print("could not create pass type")
+ //}}
+ //    func checkBirthDate(dateString: String){
+ //        do {
+ //            let birthDate = Date.dateFromString(value: dateString)
+ //            _ = try ChildGuest(dateOfBirth: birthDate)
+ //        } catch let error {
+ //            print(error.localizedDescription)
+ //        }
+ //    }
+ 
+ */

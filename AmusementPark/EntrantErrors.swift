@@ -23,8 +23,16 @@ enum EntrantErrors: Error {
     //vendor errors
     case missingServiceDate
     case missingCompanyName
+    //
+    case projectNumberInvalid
+    case projectNumberMissing
+    case invalidProjectNumberLength
+    //
+    case vendorNameMissing
+    case invalidVendorName
     
 }
+
 
 extension EntrantErrors: LocalizedError {
     var errorDescription: String? {
@@ -45,9 +53,19 @@ extension EntrantErrors: LocalizedError {
         case .missingZipCode: return
             "Attention: Entrants zipcode is required for entry.\n"
         case .missingServiceDate: return
-            "Attention: Vendors Date of visit is required for entry.\n"
+            "Attention: Vendors Date of service is required for entry.\n"
         case .missingCompanyName: return
             "Attention: Vendors Company Name is required for entry.\n"
+        case .projectNumberMissing: return
+            "Attention: Project Number is needed for entry."
+        case.projectNumberInvalid: return
+            "Attention: Could not validate project number."
+        case .invalidProjectNumberLength: return
+            "Attention: Your Project Number does not meet the required length"
+        case .vendorNameMissing: return
+            "Attention: Vendors name is required for entry"
+        case .invalidVendorName: return
+            "Attention: Could not validate this vendor."
         }
     }
 }
