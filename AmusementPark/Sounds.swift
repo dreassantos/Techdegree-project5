@@ -11,18 +11,16 @@ import AVFoundation
 class Sounds {
     var sound: AVAudioPlayer?
     func playSound (soundName: String){
-        if soundName == "AccessGranted"{
         do{
-            if let fileURL = Bundle.main.path(forResource: "AccessGranted", ofType: "wav") {
+            if let fileURL = Bundle.main.path(forResource: soundName, ofType: "wav") {
                 sound = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileURL))
-                sound?.play()
             } else {
                 print("Error: No file with specified name exists")
             }
         } catch let error {
             print("Can't play the audio file failed with an error \(error.localizedDescription)")
         }
-        }
+        sound?.play()
     }
 }
         
