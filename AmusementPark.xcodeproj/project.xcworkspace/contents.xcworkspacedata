@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AmusementPark.xcodeproj">
+      location = "group:/Users/andreasantos/Documents/Treehouse/Unit5/05Project/Techdegree-project5/AmusementPark/AccessDenied.wav">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/andreasantos/Documents/Treehouse/Unit5/05Project/Techdegree-project5/AmusementPark/AccessGranted.wav">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

@@ -13,6 +13,7 @@ class PassCreatorViewController: UITableViewController {
     var discountToCheck = String()
     var projectNumber = String()
     var companyName = String()
+    var optionPressed = 0
     //Label Outlets for current viewController
     @IBOutlet weak var entrantNameLabel: UILabel!
     @IBOutlet weak var passTypeLabel: UILabel!
@@ -35,12 +36,44 @@ class PassCreatorViewController: UITableViewController {
         entrantNameLabel.text = entrantName
         passTypeLabel.text = "\(entrant.pass.passType.rawValue) pass"
         passSummaryLabel.text = entrant.pass.passSummary(passName: entrant.pass)
-//        getEntrantsInfo()
     }
+
+    func swipeCheck() {
+        do{
+            try entrant.kiosk.doubleSwipeCheck(lastSwipe: entrant.pass.lastSwipe)
+            //If it works update the date
+            entrant.pass.lastSwipe = Date()
+    
+        } catch let error {
+            let alert = UIAlertController(title: title , message:error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+//    func loadSound(_ sound: String){
+//        do{
+//            try playSound(soundName: sound)
+//        } catch let error {
+//            let alert = UIAlertController(title: title , message:error.localizedDescription, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//        }
+//    }
 
     @IBAction func areaAccess(_ sender: UIButton) {
         hideStacks()
         areaAccessStack.isHidden = false
+        print(sender.currentTitle)
+        if !(sender.currentTitle == "Area Access"){
+            if !(optionPressed == 0){
+            swipeCheck()
+            } else {
+            optionPressed += 1
+            }
+        } else {
+            optionPressed = 0
+        }
         print(entrant.pass.passName)
         var areaAccessArray : [AreaAccess] = []
         if entrant.pass.passName == "contractor" {
@@ -73,6 +106,15 @@ class PassCreatorViewController: UITableViewController {
     }
     
     @IBAction func rideAccess(_ sender: UIButton) {
+        if !(sender.currentTitle == "Ride Access"){
+            if !(optionPressed == 0){
+                swipeCheck()
+            } else {
+                optionPressed += 1
+            }
+        } else {
+            optionPressed = 0
+        }
         hideStacks()
         rideAccessStack.isHidden = false
         switch sender.currentTitle {
@@ -89,12 +131,11 @@ class PassCreatorViewController: UITableViewController {
         discountOptionsStack.isHidden = true
         discountAccessStack.isHidden = true
     }
-    
-    
-    
+
     @IBAction func discountButton(_ sender: UIButton) {
         hideStacks()
         discountOptionsStack.isHidden = false
+        optionPressed = 0
     }
     @IBAction func FoodDiscount(_ sender: UIButton) {
         hideStacks()
@@ -109,6 +150,11 @@ class PassCreatorViewController: UITableViewController {
     }
     
     @IBAction func discountAccess(_ sender: UIButton) {
+        if !(optionPressed == 0){
+                swipeCheck()
+        } else {
+                optionPressed += 1
+        }
         switch sender.currentTitle {
         case "0":
             testResultLabel.text = kiosk.validateAccess(discountToCheck: discountToCheck, pass: entrant.pass, discount: 0)

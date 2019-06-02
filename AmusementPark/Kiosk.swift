@@ -32,7 +32,8 @@ class Kiosk {
     }
     
     func validateAccess(pass: Pass, at area: AreaAccess) -> String {
-        if pass.areaAccess.contains(area){
+        if pass.areaAccess.contains(area) {
+            Sounds().playSound(soundName: "AccessGranted")
             return ("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {
             return ("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")

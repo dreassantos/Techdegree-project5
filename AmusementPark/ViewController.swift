@@ -303,9 +303,6 @@ class ViewController: UIViewController {
         //check that the correct segue is being preformed.
         guard let destinationVC = segue.destination as? PassCreatorViewController else {return}
         //if so then pass all the needed variables.
-        print("This is what is showing up for the text field \(nameTextField[0].text)\n")
-        print("This is the value for first name \(firstName)")
-        
         if !(firstName == "") {
            destinationVC.entrantName = "\(firstName) \(lastName)"
         }else{ destinationVC.entrantName = "New Entrant"}

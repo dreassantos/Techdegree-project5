@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import AVFoundation
 
 extension Date {
     static func dateFromString(value: String) -> Date? {
@@ -214,7 +214,7 @@ extension VendorPass {
     }
 }
 
-        
+
 
 
 //        // delays the check https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift/27517642
