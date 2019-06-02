@@ -129,34 +129,15 @@ class PassCreatorViewController: UITableViewController {
         performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
 }
-
-/*
- //    func getEntrantsInfo(){
- //from previous viewController
- //        entrantNameLabel.text = entrantName
- //        passTypeLabel.text = nameOfPassType
- //setting the correct pass for testing perposes.
- //        switch nameOfPassType {
- //        case "Classic": pass = ClassicPass()
- //        case "VIP": pass = VipPass()
- //        case "Child": pass = ChildPass()
- //        case "Season Pass": pass = SeasonPass()
- //        case "Senior" : pass = SeniorPass()
- //        case "Food Services" : pass = FoodServicesPass()
- //        case "Ride Service" : pass = RideServicesPass()
- //        case "Maintenance" : pass = MaintenancePass()
- //        case "Manager" : pass = ManagerPass()
- //        case "Contractor": pass = ContractorPass()
- //        case "Vendor": pass = VendorPass()
- //        default: print("could not create pass type")
- //}}
- //    func checkBirthDate(dateString: String){
- //        do {
- //            let birthDate = Date.dateFromString(value: dateString)
- //            _ = try ChildGuest(dateOfBirth: birthDate)
- //        } catch let error {
- //            print(error.localizedDescription)
- //        }
- //    }
- 
- */
+//    func doubleSwipeCheck() throws {
+//        var lastSwipe = entrant.pass.lastSwipe
+//        do{
+//            try kiosk.doubleSwipeCheck(lastSwipe: lastSwipe)
+//            //if it passed then change the date
+//            lastSwipe = Date()
+//        }catch let error {
+//            let alert = UIAlertController(title: title , message:error.localizedDescription, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//        }
+//    }

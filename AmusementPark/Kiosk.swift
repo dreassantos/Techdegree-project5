@@ -51,14 +51,23 @@ class Kiosk {
     }
     
     func validateAccess(pass: Pass, at ride: RideAccess) -> String {
-        if pass.rideAccess.contains(.noAccess) || !(pass.rideAccess.contains(ride)){
-            return ("\(pass.passName) pass - Access Denied: You do not have access to the rides\n")
-        }
-        else {
-            return ("\(pass.passName) pass - Access Granted: You have access to all rides \n")
+        switch ride {
+        case .allRides:
+            if pass.rideAccess == [.noAccess] || !(pass.rideAccess.contains(ride)) {
+               return ("\(pass.passName) pass - Access Denied: You do not have access to the rides\n")
+            } else {
+                return ("\(pass.passName) pass - Access Granted: You have access to all rides \n")
+            }
+        case .skipTheLines:
+            if pass.rideAccess == [.noAccess] || !(pass.rideAccess.contains(ride)){
+               return ("\(pass.passName) pass - Access Denied: You do not have access to skip the lines for rides\n")
+            }else {
+            return ("\(pass.passName) pass - Access Granted: You can skip ride lines.\n")
+            }
+        default: return "Error Try Again"
         }
     }
-    
+
     func validateAccess(discountToCheck: String?, pass: Pass, discount: Int) -> String {
         if let discountToCheck = discountToCheck {
         switch discountToCheck {
@@ -80,23 +89,3 @@ class Kiosk {
         return ""
     }
 }
-    
-//        if discountToCheck == "food" {
-//            if pass.discountAccessFor.food == discount {
-//                return ("\(pass.passName) pass - Access Granted: You qualify for a food discount of \(foodDiscount)%\n")
-//            }else {
-//                return ("\(pass.passName) pass - Access Denied: You do not qualify for a food discount of \(foodDiscount)%\n")
-//            }
-//        }
-//         if discountToCheck == "merch" {
-//
-//
-//        if pass.discountAccessFor.merchandise == merchandiseDiscount{
-//            print("\(pass.passName) pass - Access Granted: You qualify for a merchandise discount of \(merchandiseDiscount)%\n")
-//        }else {
-//            print("\(pass.passName) pass - Access Denied: You do not qualify for a merchandise discount of \(merchandiseDiscount)%\n")
-//        }
-//    }
-//}
-
-//let alert = UIAlertController(title: "Access Granted", message: "\(pass.passName) pass - You have access to the \(area) area\n", preferredStyle: UIAlertController.Style.alert)

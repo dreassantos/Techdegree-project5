@@ -120,16 +120,16 @@ class Test {
 //        kiosk.validateAccess(pass: ManagerPass(), foodDiscount: 25, merchandiseDiscount: 25)
         
         //using the kiosk from the entrant class (pass is created first)
-        do{
-            let birthDate = Date.dateFromString(value: "03/30/1960")
-            let seniorGuest1 = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate)
-            try seniorGuest1.swipeAtGate(gate: .amusementPark)
-              //Testing double swiping at gate
-            try seniorGuest1.swipeAtRide(ride: .allRides)
-            try seniorGuest1.swipeAtRide(ride: .allRides)
-        } catch let error {
-            print(error.localizedDescription)
-        }
+//        do{
+//            let birthDate = Date.dateFromString(value: "03/30/1960")
+//            let seniorGuest1 = try SeniorGuest(firstName: "frances", lastName: "Smith", dateOfBirth: birthDate)
+//            try seniorGuest1.swipeAtGate(gate: .amusementPark)
+//              //Testing double swiping at gate
+//            try seniorGuest1.swipeAtRide(ride: .allRides)
+//            try seniorGuest1.swipeAtRide(ride: .allRides)
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
     }
 }
 

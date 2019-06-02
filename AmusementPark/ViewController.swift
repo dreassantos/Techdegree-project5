@@ -214,7 +214,7 @@ class ViewController: UIViewController {
         if let first = nameTextField[0].text, let last = nameTextField[1].text {
             firstName = first
             lastName = last
-        } else { firstName = "New Entrant" }
+        } else { return }
         
         if let dob = dateOfBirthTextField.text{
             //Check for valid date
@@ -229,16 +229,11 @@ class ViewController: UIViewController {
         city = addressTextField[1].text
         state = addressTextField[2].text
         zipCode = addressTextField[3].text
-        
-        //!first.isEmpty, !last.isEmpty
-        //check the Entrants Date of birth - Alert if its their birthday
-        //checkEntrantDOB()
         checkReqInfo()
         //If all requirements are met continue creating the pass.
         if segueStatus {
             performSegue(withIdentifier: "CreatePassSegue", sender: nil)
         }
-        //clearTextFields()
     }
     
     func clearTextFields(){
@@ -257,6 +252,7 @@ class ViewController: UIViewController {
     
     @IBAction func entrantOptionButtons(_ sender: UIButton) {
         guard let pass = sender.currentTitle else {return}
+        clearTextFields()
         passName = pass
         guestMenueStack.isHidden = true
         employeeMenueStack.isHidden = true
@@ -273,6 +269,7 @@ class ViewController: UIViewController {
         guard let pass = sender.currentTitle else {return}
         passName = pass
         //Reset all stacks
+        clearTextFields()
         disableStack(nameStack)
         disableStack(companyStack)
         disableStack(addressStack)
@@ -306,7 +303,12 @@ class ViewController: UIViewController {
         //check that the correct segue is being preformed.
         guard let destinationVC = segue.destination as? PassCreatorViewController else {return}
         //if so then pass all the needed variables.
-        destinationVC.entrantName = "\(firstName) \(lastName)"
+        print("This is what is showing up for the text field \(nameTextField[0].text)\n")
+        print("This is the value for first name \(firstName)")
+        
+        if !(firstName == "") {
+           destinationVC.entrantName = "\(firstName) \(lastName)"
+        }else{ destinationVC.entrantName = "New Entrant"}
         destinationVC.entrant = entrant
         if let pn = projectNumberTextField.text {
         destinationVC.projectNumber = pn
@@ -325,7 +327,7 @@ class ViewController: UIViewController {
         dateOfBirthTextField.text = randomDate()
         }
         if projectNumberStack.isUserInteractionEnabled {
-            //random 4 digit number
+            //random 4 digit number Working numbers are 1001,1002,1003,2001,2002
             projectNumberTextField.text = randomProjectNumber()
         }
         if nameStack.isUserInteractionEnabled {
@@ -350,56 +352,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-
-
-
-/*
- 
- case "Senior":
- do {
- let _ = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: birthDate)
- } catch let error {
- print(error.localizedDescription)
- }
- case "Vendor":
- do {
- 
- guard let companyName = vendorCompanyTextField[1].text, let serviceDateString = vendorCompanyTextField[2].text else {return}
- let serviceDate = Date.dateFromString(value: serviceDateString)
- let _ = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: birthDate, companyName: companyName, dateOfVisit: serviceDate)
- } catch let error {
- print(error.localizedDescription)
- }
- */
- 
-
-//This is working code .... comented out to test other code...
-
-//    func checkEntrantDOB() {
-//        //if the dob string is not empty do this...
-//        if let dob = dateOfBirthTextField.text, !dob.isEmpty {
-//        let birthDate = Date.dateFromString(value: dob)
-//        //Check Entrants DOB to see if its their birthday
-//        //entrant is a bool for if it was a birthday or not
-//        if let dob = birthDate {
-//            status = true //even if its their bday or not the entrant can proceed (except child - check)
-//            let entrant = Guest(entrantType: .defaultEntrant).birthDayCheck(dateOfBirth: dob)
-//            if entrant { // it is their birthday display a message.... Alert
-//                showAlert(title: "Happy Birthday", message:"Happy Birthday \(firstName)! Have a wonderful visit today!")
-//                }
-//Then check if its a child - Does DOB qualify for a free child pass?
-//            if passName == "Child"{
-//                do {
-//                    _ = try ChildGuest(dateOfBirth: birthDate)
-//                    status = true
-//                } catch let error {
-//                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-//                    print(error.localizedDescription)
-//                    status = false
-//                }
-//            }}} else {
-//            //if date of birth was not given.... (And not required)... continue with segue
-//            status = true
-//        }
-//    }

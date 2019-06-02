@@ -33,6 +33,9 @@ enum EntrantErrors: Error {
     case vendorNameMissing
     case invalidVendorName
     case HappyBirthday(String)
+    case invalidZipCodeLength
+    case invalidZipCodeText
+    case accessError
 }
 
 
@@ -75,6 +78,12 @@ extension EntrantErrors: LocalizedError {
         //Not really an error but it is something that must be alerted
         case .HappyBirthday(let name): return
             ("Happy Birthday \(name)! Have a wonderful visit today!")
+        case .invalidZipCodeLength: return
+            "Attention: Zip Code must be 5 digits"
+        case .invalidZipCodeText: return
+            "Attention: Zip Code must not contain leters. Ditigs only"
+        case .accessError : return
+            "Due to an system error program can not check Access"
         }
     }
 }

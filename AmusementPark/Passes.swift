@@ -1,6 +1,5 @@
 //  Passes.swift
 //  AmusementPark
-//
 //  Created by Andrea on 3/17/19.
 //  Copyright © 2019 SantosAndrea. All rights reserved.
 //
@@ -31,7 +30,7 @@ enum PassType: String{
     case maintenance
     case manager
     case seasonPassholder
-    case Senior
+    case senior
     case contractor
     case vendor
 }
@@ -52,6 +51,7 @@ class Pass {
         self.discountAccessFor = discountAccessFor
     }
 }
+
 class DefaultPass: Pass {
     init(){
         super.init(passType: .basic, areaAccess: [.amusementPark], rideAccess: [.allRides], discountAccessFor: (food: 0, merchandise: 0))
@@ -92,7 +92,7 @@ class SeasonPass: GuestPass {
 
 class SeniorPass: GuestPass {
     init(){
-        super.init(passType: .Senior, rideAccess: [.allRides, .skipTheLines], discountAccessFor: (food: 10, merchandise: 20))
+        super.init(passType: .senior, rideAccess: [.allRides, .skipTheLines], discountAccessFor: (food: 10, merchandise: 20))
     }
 }
 
@@ -207,7 +207,7 @@ extension Pass {
             \u{2022} 10% Food Discount
             \u{2022} 20% Merchandise Discount
             """
-        case .Senior: return
+        case .senior: return
             """
             \u{2022} Unlimited Rides
             \u{2022} Skip Ride Lines

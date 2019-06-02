@@ -27,7 +27,11 @@ extension String {
         //print(stringWitoutSpaces)
         return stringWitoutSpaces
     }
+    var isInt: Bool {
+        return Int(self) != nil
+    }
 }
+
 
 //Entrant Extensions
 extension Entrant {
@@ -108,35 +112,45 @@ extension Entrant {
          guard let state = state, !state.RemoveBlankSpaces.isEmpty else {
             throw EntrantErrors.missingStateName
         }
-         guard let zip = zipCode, !zip.RemoveBlankSpaces.isEmpty else {
-            //accepting zip as string inorder to check then in project 5 I will convert text from field into integer.
-            throw EntrantErrors.missingZipCode
+        if let zip = zipCode, !zip.RemoveBlankSpaces.isEmpty {
+            if !(zip.isInt) {
+                throw EntrantErrors.invalidZipCodeText
+            }
+            else if !(zip.count == 5){
+                throw EntrantErrors.invalidZipCodeLength
+            }
+        }
+        else {
+                 throw EntrantErrors.missingZipCode
         }
     }
     
     // siwpes in need to use it from the pass.
-    func swipeAtGate(gate: AreaAccess) throws {
-        kiosk.validateAccess(pass: self.pass, at: gate)
-        //if there is a date of birth avalible check it for a birth date
-        if self.dateOfBirth != nil {
-            try dateOfBirthCheck()
-        }
-    }
+//    func swipeAtGate(gate: AreaAccess) throws {
+//        kiosk.validateAccess(pass: self.pass, at: gate)
+//        //if there is a date of birth avalible check it for a birth date
+//        if self.dateOfBirth != nil {
+//            try dateOfBirthCheck()
+//        }
+//    }
+//    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
+//        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
+//        if self.dateOfBirth != nil {
+//            try dateOfBirthCheck()
+//        }
+//    }
+//
+//    func swipeAtRide(ride: RideAccess) throws {
+//        try kiosk.doubleSwipeCheck(lastSwipe: pass.lastSwipe)
+//        //if it passed then change the date
+//        pass.lastSwipe = Date()
+//        //now validate the access
+//        kiosk.validateAccess(pass: self.pass, at: ride)
+//        if self.dateOfBirth != nil {
+//            try dateOfBirthCheck()
+//        }
+//    }
     
-    func swipeAtRide(ride: RideAccess) throws {
-        try kiosk.doubleSwipeCheck(lastSwipe: pass.lastSwipe)
-        //if it passed then change the date
-        pass.lastSwipe = Date()
-        //now validate the access
-        kiosk.validateAccess(pass: self.pass, at: ride)
-        if self.dateOfBirth != nil {
-            try dateOfBirthCheck()
-        }
-    }
-}
-
-
-extension Entrant {
     func validateVendor (_ vendorName: String?) throws {
         guard let vendorName = vendorName else {
             throw EntrantErrors.vendorNameMissing
@@ -201,24 +215,6 @@ extension VendorPass {
 }
 
         
-        //    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
-        //        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
-        //        if self.dateOfBirth != nil {
-        //            try dateOfBirthCheck()
-        //        }
-
-//extension Vendor {
-//    func vendorCheck() throws {
-//        guard (self.companyName.RemoveBlankSpaces) != nil else {
-//            throw EntrantErrors.missingCompanyName
-//        }
-//
-//        guard let serviceDate = self.dateOfVisit else {
-//            throw EntrantErrors.missingServiceDate
-//        }
-//    }
-//}
-
 
 
 //        // delays the check https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift/27517642
