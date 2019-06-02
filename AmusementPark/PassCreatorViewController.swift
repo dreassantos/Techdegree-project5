@@ -10,7 +10,9 @@ class PassCreatorViewController: UITableViewController {
     var birthDate: String?
     var entrant = Entrant(entrantType: .defaultEntrant)
     let kiosk = Kiosk()
-    var discountToCheck = "Default"
+    var discountToCheck = String()
+    var projectNumber = String()
+    var companyName = String()
     //Label Outlets for current viewController
     @IBOutlet weak var entrantNameLabel: UILabel!
     @IBOutlet weak var passTypeLabel: UILabel!
@@ -35,21 +37,39 @@ class PassCreatorViewController: UITableViewController {
         passSummaryLabel.text = entrant.pass.passSummary(passName: entrant.pass)
 //        getEntrantsInfo()
     }
-    
-
 
     @IBAction func areaAccess(_ sender: UIButton) {
         hideStacks()
         areaAccessStack.isHidden = false
-        switch sender.currentTitle {
-        case "Amusment Park": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .amusementPark)
-        case "Kitchen": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .kitchen)
-        case "Ride Control": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .rideControl)
-        case "Maintenance": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .maintenance)
-        case "Office": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .office)
-        default: print(sender.currentTitle)
+        print(entrant.pass.passName)
+        var areaAccessArray : [AreaAccess] = []
+        if entrant.pass.passName == "contractor" {
+          return  areaAccessArray = ContractorPass().validateContractorAccess(projectNumber: projectNumber)
         }
-  
+        else if entrant.pass.passName == "vendor" {
+            areaAccessArray = VendorPass().validateVendorAccess(companyName: companyName)
+        }
+        print(areaAccessArray)
+        if entrant.pass.passName == "contractor" || entrant.pass.passName == "vendor" {
+            switch sender.currentTitle {
+            case "Amusment Park": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .amusementPark)
+            case "Kitchen": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .kitchen)
+            case "Ride Control": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .rideControl)
+            case "Maintenance": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .maintenance)
+            case "Office": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .office)
+            default: print(sender.currentTitle)
+            }
+        }
+        else {
+            switch sender.currentTitle {
+            case "Amusment Park": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .amusementPark)
+            case "Kitchen": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .kitchen)
+            case "Ride Control": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .rideControl)
+            case "Maintenance": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .maintenance)
+            case "Office": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .office)
+            default: print(sender.currentTitle)
+            }
+        }
     }
     
     @IBAction func rideAccess(_ sender: UIButton) {

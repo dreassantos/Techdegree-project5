@@ -56,7 +56,7 @@ class Guest: Entrant {
 }
 
 class ClassicGuest: Guest {
-    init() throws {
+    init() {
         super.init(entrantType: .classic)
          pass = ClassicPass()
         //try dateOfBirthCheck() //  dateOfBirthCheck is also checks for birthday....
@@ -164,17 +164,20 @@ class Contractor: Employee {
 
 class Vendor: Employee {
     let companyName: String?
+    let serviceDate: String
     let dateOfVisit: Date?
     init(firstName:String, lastName:String, dateOfBirth:
-        Date?, companyName: String?, dateOfVisit: Date?) throws {
+        Date?, companyName: String?, serviceDate: String, dateOfVisit: Date?) throws {
         self.companyName = companyName
         self.dateOfVisit = dateOfVisit
+        self.serviceDate = serviceDate
         super.init(entrantType: .vendor, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
         try personalInfoCheck()
-        try dateOfBirthCheck()
+        try validateVendor(companyName)
         try dateOfServiceCheck(dateOfVisit)
+        try validateDate(serviceDate)
+        try dateOfBirthCheck()
         pass = VendorPass()
-       
         print("Vendor Pass Created\n")
     }
 }

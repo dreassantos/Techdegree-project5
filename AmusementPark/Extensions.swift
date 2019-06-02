@@ -64,7 +64,7 @@ extension Entrant {
     
     func dateOfBirthCheck() throws -> Date {
         if let  dateOfBirth = self.dateOfBirth {
-            birthDayCheck(dateOfBirth: dateOfBirth)
+            try birthDayCheck(dateOfBirth: dateOfBirth)
             return dateOfBirth
         }
         else {
@@ -73,7 +73,7 @@ extension Entrant {
     }
     
     func validateDate(_ date: String) throws {
-        if !(date.count == 10) {
+        if !(date.count == 10) && !(date.count == 0) {
            throw EntrantErrors.invalidDate
         }
     }
@@ -84,19 +84,18 @@ extension Entrant {
         }
     }
     
-    func birthDayCheck(dateOfBirth: Date) -> Bool {
+    func birthDayCheck(dateOfBirth: Date) throws {
         let birthDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dateOfBirth)
         let todaysDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
-        var birthdayStatus = false
+        //var birthdayStatus = false
         if (birthDateComponents.month == todaysDateComponents.month) && (birthDateComponents.day == todaysDateComponents.day) {
-            birthdayStatus = true
+           // birthdayStatus = true
             if let firstName = self.firstName {
-                print ("Happy Birthday \(firstName)! Have a wonderful visit today!")
+                throw EntrantErrors.HappyBirthday(firstName)
             } else {
-                print ("Happy Birthday!")
+                throw EntrantErrors.HappyBirthday("")
             }
         }
-        return birthdayStatus
     }
     
     func addressCheck() throws {
@@ -133,14 +132,9 @@ extension Entrant {
         if self.dateOfBirth != nil {
             try dateOfBirthCheck()
         }
-    
-//    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
-//        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
-//        if self.dateOfBirth != nil {
-//            try dateOfBirthCheck()
-//        }
+    }
 }
-}
+
 
 extension Entrant {
     func validateVendor (_ vendorName: String?) throws {
@@ -176,6 +170,43 @@ extension ChildGuest {
         }
     }
 }
+
+extension ContractorPass {
+    func validateContractorAccess(projectNumber: String) -> [AreaAccess] {
+        var areaAccess:[AreaAccess] = []
+        switch projectNumber {
+        case "1001": areaAccess = [.amusementPark,.rideControl]
+        case "1002": areaAccess =  [.amusementPark,.rideControl,.maintenance]
+        case "1003": areaAccess = [.amusementPark,.rideControl,.kitchen,.maintenance,.office]
+        case "2001": areaAccess = [.office]
+        case "2002": areaAccess = [.kitchen,.maintenance]
+        default: areaAccess = []
+        }
+        return areaAccess
+    }
+}
+
+extension VendorPass {
+    func validateVendorAccess(companyName: String) -> [AreaAccess] {
+        var areaAccess: [AreaAccess] = []
+        switch companyName.lowercased() {
+        case "orkin": areaAccess = [.amusementPark,.rideControl,.kitchen]
+        case "acme": areaAccess = [.kitchen]
+        case "fedex": areaAccess = [.maintenance,.office]
+        case "nw electrical": areaAccess = [.amusementPark,.kitchen,.maintenance,.office,.rideControl]
+        default: areaAccess = []
+        }
+        return areaAccess
+    }
+}
+
+        
+        //    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
+        //        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
+        //        if self.dateOfBirth != nil {
+        //            try dateOfBirthCheck()
+        //        }
+
 //extension Vendor {
 //    func vendorCheck() throws {
 //        guard (self.companyName.RemoveBlankSpaces) != nil else {

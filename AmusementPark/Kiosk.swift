@@ -30,21 +30,35 @@ class Kiosk {
             }
         }
     }
+    
     func validateAccess(pass: Pass, at area: AreaAccess) -> String {
-        //will change to alerts for unit 5 project for now just printing to console
         if pass.areaAccess.contains(area){
             return ("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {
             return ("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
         }
     }
-    func validateAccess(pass: Pass, at ride: RideAccess) -> String {
-        if pass.rideAccess.contains(ride){
-            return ("\(pass.passName) pass - Access Granted: You have access to this ride\n")
+    
+    func validateAccess(pass: Pass, areaAccessArray: [AreaAccess], at area: AreaAccess) -> String {
+        print(pass.passName)
+        print(areaAccessArray)
+        if areaAccessArray.contains(area){
+
+            return ("\(pass.passName) pass - You have access to the \(area) area\n")
         }else {
-            return("\(pass.passName) pass - Access Denied: You do not have access to this ride\n")
+            return ("\(pass.passName) pass - Access Denied: You do not have access to the \(area) area\n")
         }
     }
+    
+    func validateAccess(pass: Pass, at ride: RideAccess) -> String {
+        if pass.rideAccess.contains(.noAccess) || !(pass.rideAccess.contains(ride)){
+            return ("\(pass.passName) pass - Access Denied: You do not have access to the rides\n")
+        }
+        else {
+            return ("\(pass.passName) pass - Access Granted: You have access to all rides \n")
+        }
+    }
+    
     func validateAccess(discountToCheck: String?, pass: Pass, discount: Int) -> String {
         if let discountToCheck = discountToCheck {
         switch discountToCheck {

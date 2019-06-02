@@ -79,126 +79,134 @@ class ViewController: UIViewController {
         //Must present the alert for the user to view it.
         self.present(alert, animated: true)
     }
-
+    
+    func coustomCatch(_ error: Error){
+        if error.localizedDescription.contains("Happy Birthday"){
+            segueStatus = true
+            showAlert(title: "Happy Birthday!", message: error.localizedDescription)
+        }else{
+            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
+            segueStatus = false
+        }
+    }
     func checkReqInfo() {
         switch passName {
         case "Classic":
                         do {
-                            entrant = try ClassicGuest()
+                            entrant = ClassicGuest()
+                            if let dateOfBirth = dateOfBirth {
+                            try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
                             segueStatus = true
-                        } catch let error {
-                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                            print(error.localizedDescription)
-                            segueStatus = false
-                        }
+                            } catch let error {
+                            coustomCatch(error)
+                            }
         case "VIP":
                         do {
-                                entrant = try VipGuest()
-                                segueStatus = true
-                        } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
-                        }
-        case "Child":
-                            do {
-                                entrant = try ChildGuest(dateOfBirth: dateOfBirth)
-                                segueStatus = true
+                            entrant = VipGuest()
+                            if let dateOfBirth = dateOfBirth {
+                            try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                            coustomCatch(error)
+                            }
+        case "Child":
+                        do {
+                            entrant = try ChildGuest(dateOfBirth: dateOfBirth)
+                            segueStatus = true
+                            } catch let error {
+                                coustomCatch(error)
                             }
             
         case "Food Services":
-                            do {
-                                entrant = try FoodServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
-                                segueStatus = true
+                        do {
+                            entrant = try FoodServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                            coustomCatch(error)
                             }
         case "Ride Services":
-                            do {
-                                entrant = try RideServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
-                                segueStatus = true
+                        do {
+                            entrant = try RideServicesEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                            coustomCatch(error)
                             }
         case "Maintenance":
-                            do {
-                                entrant = try MaintenanceEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode )
-                                segueStatus = true
+                        do {
+                            entrant = try MaintenanceEmployee(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode )
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                                coustomCatch(error)
                             }
         case "Manager":
-                            do {
-                                entrant = try Manager(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
-                                segueStatus = true
+                        do {
+                            entrant = try Manager(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                                coustomCatch(error)
                             }
         case "Season Pass":
-                            do {
-                                entrant = try SeasonPassHolder(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
-                                segueStatus = true
+                        do {
+                            entrant = try SeasonPassHolder(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                                }
+                            segueStatus = true
                             } catch let error {
-                                showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                                print(error.localizedDescription)
-                                segueStatus = false
+                                coustomCatch(error)
                             }
         case "Senior":
                         do {
                             entrant = try SeniorGuest(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth)
                             segueStatus = true
-                        } catch let error {
-                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                            print(error.localizedDescription)
-                            segueStatus = false
-                        }
+                            } catch let error {
+                                coustomCatch(error)
+                            }
         case "Contractor":
-            do {
-                var pn: String? = projectNumberTextField.text
-                if projectNumberTextField.text == ""{
-                    pn = nil
-                }
-                    entrant = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, projectNumber: pn)
-                            try entrant.validateProjectNumber(pn)
+                        do {
+                            var projectNumberString: String? = projectNumberTextField.text
+                            if projectNumberTextField.text == ""{
+                                    projectNumberString = nil
+                            }
+                            entrant = try Contractor(firstname: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, projectNumber: projectNumberString)
+                            if let dateOfBirth = dateOfBirth {
+                                try entrant.birthDayCheck(dateOfBirth: dateOfBirth)
+                            }
                             segueStatus = true
-                        } catch let error {
-                            showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                            print(error.localizedDescription)
-                            segueStatus = false
-                        }
+                            } catch let error {
+                                coustomCatch(error)
+                            }
         case "Vendor":
-                var companyName: String? = vendorCompanyTextField[0].text
-                if vendorCompanyTextField[0].text == "" {
-                    companyName = nil
-                }
-                guard let serviceDate = vendorCompanyTextField[1].text else {return}
-                let dateOfVisit = Date.dateFromString(value: serviceDate)
-                do {
-                    entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName , dateOfVisit: dateOfVisit)
-                    try entrant.validateDate(serviceDate)
-                    try entrant.validateVendor(companyName)
-                    segueStatus = true
-                } catch let error {
-                    showAlert(title: "Could Not Create Pass", message: error.localizedDescription)
-                    print(error.localizedDescription)
-                    segueStatus = false
-                }
+                            var companyName: String? = vendorCompanyTextField[0].text
+                            if vendorCompanyTextField[0].text == "" {
+                                companyName = nil
+                            }
+                            guard let serviceDate = vendorCompanyTextField[1].text else {return}
+                            let dateOfVisit = Date.dateFromString(value: serviceDate)
+                            do {
+                            entrant = try Vendor(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, companyName: companyName, serviceDate: serviceDate ,dateOfVisit: dateOfVisit)
+                            segueStatus = true
+                            } catch let error {
+                                coustomCatch(error)
+                            }
             default: Guest(entrantType: .defaultEntrant)
-            }
         }
-    
+    }
+
     @IBAction func generatePass(_ sender: UIButton) {
         //reseting the segeStatus
         segueStatus = false
@@ -300,6 +308,12 @@ class ViewController: UIViewController {
         //if so then pass all the needed variables.
         destinationVC.entrantName = "\(firstName) \(lastName)"
         destinationVC.entrant = entrant
+        if let pn = projectNumberTextField.text {
+        destinationVC.projectNumber = pn
+        }
+        if let companyName = vendorCompanyTextField[0].text{
+            destinationVC.companyName = companyName
+        }
     }
     
    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {

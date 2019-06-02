@@ -32,8 +32,7 @@ enum EntrantErrors: Error {
     //
     case vendorNameMissing
     case invalidVendorName
-    case HappyBirthday
-    
+    case HappyBirthday(String)
 }
 
 
@@ -74,8 +73,8 @@ extension EntrantErrors: LocalizedError {
         case .invalidDate: return
             "Attention: Date Must Be in the format MM/DD/YYYY"
         //Not really an error but it is something that must be alerted
-        case .HappyBirthday: return
-            "HappyBirthday!\n Happy Birthday"
+        case .HappyBirthday(let name): return
+            ("Happy Birthday \(name)! Have a wonderful visit today!")
         }
     }
 }
