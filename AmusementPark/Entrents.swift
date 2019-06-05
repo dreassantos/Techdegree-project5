@@ -59,8 +59,6 @@ class ClassicGuest: Guest {
     init() {
         super.init(entrantType: .classic)
          pass = ClassicPass()
-        //try dateOfBirthCheck() //  dateOfBirthCheck is also checks for birthday....
-        print("Classic Guest Pass Created\n")
     }
 }
 
@@ -68,7 +66,6 @@ class VipGuest: Guest {
     init() {
         super.init(entrantType: .vip)
         pass = VipPass()
-        print("VIP Guest Pass Created\n")
     }
 }
 
@@ -78,7 +75,6 @@ class ChildGuest: Guest {
         let childDateOfBirth = try dateOfBirthCheck()
         try validateChildPass(dateOfBirth: childDateOfBirth)
         pass = ChildPass()
-        print("Free Child Guest Pass Created\n")
     }
 }
 
@@ -90,7 +86,6 @@ class SeasonPassHolder: Guest {
         try addressCheck()
         //create the pass if no errors
         pass = SeasonPass()
-        print("Season Guest Pass Created\n")
     }
 }
 
@@ -100,7 +95,6 @@ class SeniorGuest: Guest {
         try personalInfoCheck()
         try dateOfBirthCheck()
         pass =  SeniorPass()
-        print("Senior Guest Pass Created\n")
     }
 }
 
@@ -115,7 +109,6 @@ class FoodServicesEmployee: HourlyEmployee {
         try personalInfoCheck()
         try addressCheck()
         pass = FoodServicesPass()
-        print("Food Services Employee Pass Created\n")
     }
 }
 
@@ -125,7 +118,6 @@ class RideServicesEmployee: HourlyEmployee {
         try personalInfoCheck()
         try addressCheck()
         pass = RideServicesPass()
-        print("Ride Services Employee Pass Created\n")
     }
 }
 
@@ -135,7 +127,6 @@ class MaintenanceEmployee: HourlyEmployee {
         try personalInfoCheck()
         try addressCheck()
         pass = MaintenancePass()
-        print("Maintenance Employee Pass Created\n")
     }
 }
 
@@ -145,7 +136,6 @@ class Manager: Employee {
         try personalInfoCheck()
         try addressCheck()
         pass = ManagerPass()
-        print("Manager Pass Created\n")
     }
 }
 
@@ -158,7 +148,6 @@ class Contractor: Employee {
         try addressCheck()
         try validateProjectNumber(projectNumber)
         pass = ContractorPass()
-        print("Contractor Pass Created\n")
     }
 }
 
@@ -178,7 +167,6 @@ class Vendor: Employee {
         try validateDate(serviceDate)
         try dateOfBirthCheck()
         pass = VendorPass()
-        print("Vendor Pass Created\n")
     }
 }
 

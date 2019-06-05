@@ -1,4 +1,3 @@
-//
 //  Extensions.swift
 //  AmusementPark
 //
@@ -13,10 +12,7 @@ extension Date {
     static func dateFromString(value: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-    
-        print(value)
         let date = dateFormatter.date(from: value )
-        print(date)
         return date
     }
 }
@@ -31,7 +27,6 @@ extension String {
         return Int(self) != nil
     }
 }
-
 
 //Entrant Extensions
 extension Entrant {
@@ -125,32 +120,6 @@ extension Entrant {
         }
     }
     
-    // siwpes in need to use it from the pass.
-//    func swipeAtGate(gate: AreaAccess) throws {
-//        kiosk.validateAccess(pass: self.pass, at: gate)
-//        //if there is a date of birth avalible check it for a birth date
-//        if self.dateOfBirth != nil {
-//            try dateOfBirthCheck()
-//        }
-//    }
-//    func swipeAtRegister(foodDiscount: Int, merchandiseDiscount: Int) throws {
-//        kiosk.validateAccess(pass: self.pass, foodDiscount: foodDiscount, merchandiseDiscount: merchandiseDiscount)
-//        if self.dateOfBirth != nil {
-//            try dateOfBirthCheck()
-//        }
-//    }
-//
-//    func swipeAtRide(ride: RideAccess) throws {
-//        try kiosk.doubleSwipeCheck(lastSwipe: pass.lastSwipe)
-//        //if it passed then change the date
-//        pass.lastSwipe = Date()
-//        //now validate the access
-//        kiosk.validateAccess(pass: self.pass, at: ride)
-//        if self.dateOfBirth != nil {
-//            try dateOfBirthCheck()
-//        }
-//    }
-    
     func validateVendor (_ vendorName: String?) throws {
         guard let vendorName = vendorName else {
             throw EntrantErrors.vendorNameMissing
@@ -164,7 +133,6 @@ extension Entrant {
             }
         }
         if !(validStatus){
-            print(vendorNameLowerCase)
             throw  EntrantErrors.invalidVendorName
         }
     }
@@ -213,9 +181,6 @@ extension VendorPass {
         return areaAccess
     }
 }
-
-
-
 
 //        // delays the check https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift/27517642
 //        sleep(5)

@@ -81,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     func coustomCatch(_ error: Error){
-        if error.localizedDescription.contains("Happy Birthday"){
+        if error.localizedDescription.contains("Happy Birthday") {
             segueStatus = true
             showAlert(title: "Happy Birthday!", message: error.localizedDescription)
         }else{
@@ -89,6 +89,7 @@ class ViewController: UIViewController {
             segueStatus = false
         }
     }
+    
     func checkReqInfo() {
         switch passName {
         case "Classic":
@@ -217,7 +218,7 @@ class ViewController: UIViewController {
         } else { return }
         
         if let dob = dateOfBirthTextField.text{
-            //Check for valid date
+            //Check for valid date before saving the date of birth ....
             do{
                 try entrant.validateDate(dob)
             } catch let error {
@@ -236,7 +237,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func clearTextFields(){
+    func clearTextFields() {
+        //reset all text fields when options are switched or when pass is created
         dateOfBirthTextField.text?.removeAll()
         projectNumberTextField.text?.removeAll()
         for textField in nameTextField {
@@ -259,8 +261,7 @@ class ViewController: UIViewController {
         switch sender.tag {
         case 0: guestMenueStack.isHidden = false
         case 1: employeeMenueStack.isHidden = false
-        default:
-            print("Invalid Button")
+        default: return
         }
     }
     
@@ -293,8 +294,7 @@ class ViewController: UIViewController {
         enableStack(nameStack)
         enableStack(companyStack)
         companyServiceDate.isHidden = false
-        default:
-            print("Could not generate pass")
+        default: return
         }
     }
 
@@ -316,7 +316,17 @@ class ViewController: UIViewController {
     }
     
    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+        //reset the program
         clearTextFields()
+        disableStack(dobStack)
+        guestMenueStack.isHidden = true
+        employeeMenueStack.isHidden = true
+        disableStack(nameStack)
+        disableStack(companyStack)
+        disableStack(addressStack)
+        disableStack(projectNumberStack)
+        disableStack(ssnStack)
+        disableStack(projectNumberStack)
     }
     
     @IBAction func populateData(_ sender: UIButton) {

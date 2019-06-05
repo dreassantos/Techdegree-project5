@@ -64,7 +64,6 @@ class PassCreatorViewController: UITableViewController {
     @IBAction func areaAccess(_ sender: UIButton) {
         hideStacks()
         areaAccessStack.isHidden = false
-        print(sender.currentTitle)
         if !(sender.currentTitle == "Area Access"){
             if !(optionPressed == 0){
             swipeCheck()
@@ -74,7 +73,6 @@ class PassCreatorViewController: UITableViewController {
         } else {
             optionPressed = 0
         }
-        print(entrant.pass.passName)
         var areaAccessArray : [AreaAccess] = []
         if entrant.pass.passName == "contractor" {
           return  areaAccessArray = ContractorPass().validateContractorAccess(projectNumber: projectNumber)
@@ -82,7 +80,6 @@ class PassCreatorViewController: UITableViewController {
         else if entrant.pass.passName == "vendor" {
             areaAccessArray = VendorPass().validateVendorAccess(companyName: companyName)
         }
-        print(areaAccessArray)
         if entrant.pass.passName == "contractor" || entrant.pass.passName == "vendor" {
             switch sender.currentTitle {
             case "Amusment Park": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .amusementPark)
@@ -90,7 +87,7 @@ class PassCreatorViewController: UITableViewController {
             case "Ride Control": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .rideControl)
             case "Maintenance": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .maintenance)
             case "Office": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, areaAccessArray: areaAccessArray, at: .office)
-            default: print(sender.currentTitle)
+            default: return
             }
         }
         else {
@@ -100,7 +97,7 @@ class PassCreatorViewController: UITableViewController {
             case "Ride Control": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .rideControl)
             case "Maintenance": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .maintenance)
             case "Office": testResultLabel.text =  kiosk.validateAccess(pass: entrant.pass, at: .office)
-            default: print(sender.currentTitle)
+            default: return
             }
         }
     }
@@ -120,7 +117,7 @@ class PassCreatorViewController: UITableViewController {
         switch sender.currentTitle {
         case "All Rides": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, at: .allRides)
         case "Skip Lines": testResultLabel.text = kiosk.validateAccess(pass: entrant.pass, at: .skipTheLines)
-        default: print("There are only two selections...yet \(sender.currentTitle) was selected. Check")
+        default: return
         }
     }
     
@@ -171,19 +168,7 @@ class PassCreatorViewController: UITableViewController {
     }
     
     @IBAction func dismissVC(_ sender: Any) {
-        //dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil) other way
         performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
 }
-//    func doubleSwipeCheck() throws {
-//        var lastSwipe = entrant.pass.lastSwipe
-//        do{
-//            try kiosk.doubleSwipeCheck(lastSwipe: lastSwipe)
-//            //if it passed then change the date
-//            lastSwipe = Date()
-//        }catch let error {
-//            let alert = UIAlertController(title: title , message:error.localizedDescription, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//            self.present(alert, animated: true)
-//        }
-//    }

@@ -9,9 +9,12 @@
 import Foundation
 import AVFoundation
 class Sounds {
+    //kiosk sounds
     var sound: AVAudioPlayer?
-    func playSound (soundName: String){
+    
+    func playSound (soundName: String) {
         do{
+            //Create a URL from a path
             if let fileURL = Bundle.main.path(forResource: soundName, ofType: "wav") {
                 sound = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileURL))
             } else {
