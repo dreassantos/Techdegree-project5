@@ -61,10 +61,9 @@ extension Entrant {
         }
     }
     
-    func dateOfBirthCheck() throws -> Date {
+    func dateOfBirthCheck() throws  {
         if let  dateOfBirth = self.dateOfBirth {
             try birthDayCheck(dateOfBirth: dateOfBirth)
-            return dateOfBirth
         }
         else {
             throw EntrantErrors.dateOfBirthMissing
@@ -78,7 +77,7 @@ extension Entrant {
     }
     
     func dateOfServiceCheck(_ date: Date?) throws {
-        guard let dateOfService = date else {
+        guard date != nil else {
             throw EntrantErrors.missingServiceDate
         }
     }

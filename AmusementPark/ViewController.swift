@@ -204,7 +204,7 @@ class ViewController: UIViewController {
                             } catch let error {
                                 coustomCatch(error)
                             }
-            default: Guest(entrantType: .defaultEntrant)
+            default: return
         }
     }
 

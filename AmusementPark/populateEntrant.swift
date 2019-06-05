@@ -1,7 +1,5 @@
-//
 //  populateEntrant.swift
 //  AmusementPark
-//
 //  Created by Andrea Salazar Santos on 5/7/19.
 //  Copyright © 2019 SantosAndrea. All rights reserved.
 //
@@ -31,8 +29,6 @@ func randomName() -> [String] {
     ]
     let first = firstName.shuffled()
     let last = lastName.shuffled()
-//    let first = firstName[Int.random(in: 0...(firstName.count - 1))]
-//    let last = lastName[Int.random(in: 0...(lastName.count - 1))]
     return [first[0], last[0]]
 }
 func randomProjectNumber() -> String {
@@ -40,9 +36,6 @@ func randomProjectNumber() -> String {
     return String(randomNumber)
 }
 func randomDate() -> String {
-    //Causing code to crash string is displayed correctly
-    //However durring debugging... the value reads as
-    //    08//10//51 with multiple //
     let month = Int.random(in: 1...12)
     var day = 0
     switch month {
@@ -50,6 +43,33 @@ func randomDate() -> String {
     case 2: day = Int.random(in: 1...28)
     default: day = Int.random(in: 1...30)
     }
+    let components = DateComponents(year:2019, month: month, day:day)
+    let calendar = Calendar(identifier: .gregorian)
+    guard let date = calendar.date(from: components) else {return ""}
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MM/dd/yyyy"
+    let formattedText = formatter.string(from: date)
+    return formattedText
+}
+
+func randomAddress()->[String]{
+    return [
+        "\(Int.random(in: 0 ..< 100)) Steet Road",
+        "random city \(Int.random(in: 0 ..< 100))",
+        "random State \(Int.random(in: 0 ..< 100))",
+        "\(Int.random(in: 10000 ..< 99999))"]
+}
+
+func randomCompanyName() -> String {
+    let vendorNames = [ "acme","nw electrical","fedex","orkin","randomCompany","Treehouse" ]
+    let randomIndex = Int.random(in: 0...vendorNames.count - 1)
+    return vendorNames[randomIndex]
+}
+
+
+//Causing code to crash string is displayed correctly
+//However durring debugging... the value reads as
+//    08//10//51 with multiple //
 //    var randomDate = ""
 //    if month < 10 && day < 10 {
 //        randomDate = "0\(month)\\0\(day)\\2019"
@@ -64,35 +84,3 @@ func randomDate() -> String {
 //        randomDate = "\(month)\\\(day)\\2019"
 //    }
 //    print(randomDate)
-    let components = DateComponents(year:2019, month: month, day:day)
-    var calendar = Calendar(identifier: .gregorian)
-    guard let date = calendar.date(from: components) else {return ""}
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MM/dd/yyyy"
-    let formattedText = formatter.string(from: date)
-    print(formattedText)
-    return formattedText
-}
-
-func randomAddress()->[String]{
-    return [
-        "\(Int.random(in: 0 ..< 100)) Steet Road",
-        "random city \(Int.random(in: 0 ..< 100))",
-        "random State \(Int.random(in: 0 ..< 100))",
-        "\(Int.random(in: 10000 ..< 99999))"]
-}
-
-func randomCompanyName() -> String {
-    let vendorNames = [ "acme","nw electrical","fedex","orkin","randomCompany","Treehouse" ]
-    
-    let randomIndex = Int.random(in: 0...vendorNames.count - 1)
-    return vendorNames[randomIndex]
-}
-
-
-//let randomnumber = GKRandomSource.sharedRandom().nextInt(upperBound: 100)
-
-
-/*
- Int.random(in: 0 ..< 100)
- */

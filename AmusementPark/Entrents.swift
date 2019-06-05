@@ -72,8 +72,9 @@ class VipGuest: Guest {
 class ChildGuest: Guest {
     init(dateOfBirth: Date?) throws {
         super.init(entrantType: .child, dateOfBirth: dateOfBirth)
-        let childDateOfBirth = try dateOfBirthCheck()
-        try validateChildPass(dateOfBirth: childDateOfBirth)
+        try dateOfBirthCheck()
+        guard let dob = dateOfBirth else{return}
+        try validateChildPass(dateOfBirth: dob)
         pass = ChildPass()
     }
 }
